@@ -1,0 +1,10 @@
+/* Navbar.css */
+@reference "../../index.css";
+
+ul a {
+  @apply text-secondary hover:bg-primary rounded-[20px];
+}
+
+ul a.active {
+  @apply bg-primary text-accent rounded-[20px];
+}

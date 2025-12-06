@@ -1,8 +1,17 @@
 import { createBrowserRouter } from "react-router";
+import Logo from "../Components/Logo/Logo";
+import MainLayout from "../Layouts/MainLayout";
+import Home from "../Pages/Home/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <div className="flex justify-center items-center text-7xl">Hello World</div>,
+    Component: MainLayout,
+    children: [
+        {
+            index: true,
+            Component: Home
+        }
+    ]
   },
 ]);
