@@ -3,7 +3,7 @@ import logo from "../../assets/logo.jpeg"
 
 const Logo = () => {
     return (
-        <div className='flex justify-between items-center gap-1'>
+        <div className='flex items-center gap-2'>
             <div className='w-12 h-12'>
                 <img className='rounded-full w-full h-full' src={logo} alt="logo" />
             </div>

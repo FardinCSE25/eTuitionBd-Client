@@ -5,12 +5,12 @@ import Logo from '../../Components/Logo/Logo';
 import "./navbar.css";
 
 const Navbar = () => {
-    
+
     const { user, logOut } = UseAuth();
-    
-    
-    
-    
+
+
+
+
     const links = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
@@ -23,7 +23,7 @@ const Navbar = () => {
 
     return (
         <div className="py-4 flex justify-center w-full">
-            <div className="navbar w-full bg-white shadow-sm px-5 py-7 rounded-xl">
+            <div className="navbar fixed z-1000 top-0 w-full bg-white shadow-sm px-5 py-7 rounded-xl">
 
                 {/* LEFT — Logo + Mobile Menu */}
                 <div className="navbar-start flex items-center gap-2">
@@ -53,7 +53,7 @@ const Navbar = () => {
                             {links}
 
                             {user ? (
-                                <li><button  className='btn btn-sm bg-primary text-white mt-2'>Logout</button></li>
+                                <li><button className='btn btn-sm bg-primary text-white mt-2'>Logout</button></li>
                             ) : (
                                 <>
                                     <li><Link to="/login" className='btn btn-sm bg-primary text-white mt-2'>Login</Link></li>
