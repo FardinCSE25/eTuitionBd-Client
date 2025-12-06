@@ -89,10 +89,10 @@ const Navbar = () => {
                         </button>
                     ) : (
                         <>
-                            <Link to="/login" className="btn bg-primary text-white hover:bg-white hover:border-primary">
+                            <Link to="/login" className="btn bg-primary text-white hover:bg-white hover:text-secondary hover:border-primary">
                                 Login
                             </Link>
-                            <Link to="/register" className="btn bg-primary text-white hover:bg-white hover:border-primary">
+                            <Link to="/register" className="btn bg-primary text-white hover:bg-white hover:text-secondary hover:border-primary">
                                 Register
                             </Link>
                         </>
