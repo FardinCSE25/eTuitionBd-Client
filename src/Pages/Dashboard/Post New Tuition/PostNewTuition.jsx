@@ -2,10 +2,12 @@ import React from 'react';
 import UseAuth from '../../../Hooks/UseAuth';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 
 const PostNewTuition = () => {
     const { register, handleSubmit } = useForm();
     const { user } = UseAuth();
+    const axiosSecure = UseAxiosSecure()
 
     const handlePostTuition = async (data) => {
         console.log("Tuition Form Submitted:", data);
@@ -19,6 +21,29 @@ const PostNewTuition = () => {
             confirmButtonText: "<span style='color:white; font-weight:600;'>Confirm</span>",
             cancelButtonText: "<span style='color:white; font-weight:600;'>Cancel</span>",
         });
+
+        if (result.isConfirmed) {
+            try {
+                const res = await axiosSecure.post('/tuitions', data);
+                if (res.data.insertedId) {
+                    Swal.fire({
+                        title: "Done!",
+                        text: "Your tuition request has been posted",
+                        icon: "success",
+                        timer: 2500,
+                        showConfirmButton: false
+                    });
+                    // navigate('/dashboard/my-parcels');
+                }
+            } catch (err) {
+                console.log(err);
+                Swal.fire({
+                    title: "Error",
+                    text: "Tuition request can't be sent",
+                    icon: "error"
+                });
+            }
+        }
     };
 
     return (

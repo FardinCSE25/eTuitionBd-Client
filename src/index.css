@@ -3,7 +3,7 @@
 @plugin "daisyui";
 
 @plugin "daisyui" {
-  themes: light --default;
+  themes: light --default
 }
 
 @plugin "daisyui/theme" {
@@ -12,7 +12,6 @@
   --color-primary: #3B82F6;
   --color-secondary: #1E293B;
   --color-accent: #ffffff;
-  /* --color-accent: #606060; */
 }
 
 body {

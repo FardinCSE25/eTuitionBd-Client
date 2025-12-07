@@ -2,23 +2,49 @@ import React from 'react';
 import { AuthContext } from '../../Contexts/AuthContext';
 import UseAuth from '../../Hooks/UseAuth';
 import { useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
+import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
 
 const SocialLogin = () => {
     const { signInGoogle } = UseAuth()
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosSecure = UseAxiosSecure()
 
     const handleGoogleSignIn = () => {
         signInGoogle()
-        .then(result=>{
-            console.log(result);
-            navigate(location?.state || "/");
-        })
-        .catch(error=>{
-            console.log(error);
-        })
+            .then(result => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    text: `Welcome back, ${result.user.displayName || 'User'}!`,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                navigate(location?.state || "/");
+                
+            const userInfo = {
+                    email: result.user.email,
+                    displayName: result.user.displayName,
+                    photoURL: result.user.photoURL,
+                    role: "Student"
+                };
+
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        console.log('User data has been stored', res.data);
+                    })
+                    .catch(err => console.log(err));
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: error.message || 'Something went wrong',
+                });
+            });
     }
-    
+
     return (
         <button
             type="button"

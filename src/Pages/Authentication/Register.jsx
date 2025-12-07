@@ -7,6 +7,8 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import UseAuth from '../../Hooks/UseAuth';
 import SocialLogin from './SocialLogin';
 import axios from 'axios';
+import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -14,8 +16,11 @@ const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { registerUser, updateUserProfile } = UseAuth();
+    const axiosSecure = UseAxiosSecure()
 
     const handleRegister = (data) => {
+        console.log(data);
+        
         const photo = data.photo[0]
         const formData = new FormData();
         formData.append('image', photo);
@@ -28,10 +33,29 @@ const Register = () => {
                 const userInfo = {
                     email: data.email,
                     displayName: data.name,
-                    photoURL: photoURL
+                    photoURL: photoURL,
+                    role: data.role
                 };
-                
-                updateUserProfile(userInfo)
+
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Registration Successful',
+                                text: `Welcome ${data.name}!`,
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        }
+                    });
+
+                    const userProfile = {
+                            displayName: data.name,
+                            photoURL: photoURL
+                        };
+
+                updateUserProfile(userProfile)
                     .then(() => navigate(location.state || '/'))
                     .catch(err => console.log(err));
             })
@@ -117,6 +141,12 @@ const Register = () => {
                                     focus:ring-2 focus:ring-primary focus:border-primary pr-10"
                                     placeholder="Password"
                                 />
+                                {errors.password?.type === "required" && (
+                                    <p className="text-red-500 text-sm">Password is required.</p>
+                                )}
+                                {errors.password?.type === "minLength" && (
+                                    <p className="text-red-500 text-sm">Password must be 6+ characters.</p>
+                                )}
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
@@ -133,13 +163,6 @@ const Register = () => {
                                 <input type="file" {...register('photo', { required: true })} className="file-input w-full" />
                                 {errors.photo && <p className='text-red-500 mt-1 text-sm'>Photo is required.</p>}
                             </div>
-
-                            {errors.password?.type === "required" && (
-                                <p className="text-red-500 text-sm">Password is required.</p>
-                            )}
-                            {errors.password?.type === "minLength" && (
-                                <p className="text-red-500 text-sm">Password must be 6+ characters.</p>
-                            )}
                         </div>
 
                         {/* ROLE */}

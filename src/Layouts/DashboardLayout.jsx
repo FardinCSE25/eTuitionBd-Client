@@ -9,6 +9,8 @@ import { SiGoogletasks } from 'react-icons/si';
 
 const DashboardLayout = () => {
     const { role } = useRole();
+    console.log(role);
+
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
@@ -93,17 +95,23 @@ const DashboardLayout = () => {
 
                         {DrawerItem("/", "Homepage", <HomeIcon />, isOpen)}
 
-                        {DrawerItem("/dashboard/my-tuitions", "My Tuitions", <CiDeliveryTruck />, isOpen)}
+                        {
+                            role.role === "Student" && (
+                                <>
+                                    {DrawerItem("/dashboard/my-tuitions", "My Tuitions", <CiDeliveryTruck />, isOpen)}
 
-                        {DrawerItem("/dashboard/post-new-tuition", "Post New Tuition", <FaRegCreditCard />, isOpen)}
+                                    {DrawerItem("/dashboard/post-new-tuition", "Post New Tuition", <FaRegCreditCard />, isOpen)}
 
-                        {DrawerItem("/dashboard/applied-tutors", "Applied Tutors", <FaRegCreditCard />, isOpen)}
-                        
-                        {DrawerItem("/dashboard/payment-history", "Payment History", <FaRegCreditCard />, isOpen)}
+                                    {DrawerItem("/dashboard/applied-tutors", "Applied Tutors", <FaRegCreditCard />, isOpen)}
 
-                        {DrawerItem("/dashboard/profile-settings", "Profile Settings", <FaRegCreditCard />, isOpen)}
+                                    {DrawerItem("/dashboard/payment-history", "Payment History", <FaRegCreditCard />, isOpen)}
 
-                        {role === "Tutor" && (
+                                    {DrawerItem("/dashboard/profile-settings", "Profile Settings", <FaRegCreditCard />, isOpen)}
+                                </>
+                            )
+                        }
+
+                        {role.role === "Tutor" && (
                             <>
                                 {DrawerItem("/dashboard/my-applications", "My Applications", <FaTasks />, isOpen)}
 
@@ -112,7 +120,7 @@ const DashboardLayout = () => {
                                 {DrawerItem("/dashboard/revenue-history", "Revenue History", <SiGoogletasks />, isOpen)}
                             </>
                         )}
-                        {role === "Admin" && (
+                        {role.role === "Admin" && (
                             <>
                                 {DrawerItem("/dashboard/manage-users", "User Management", <FaUsers />, isOpen)}
 

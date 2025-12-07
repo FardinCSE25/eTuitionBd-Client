@@ -14,7 +14,7 @@ const Login = () => {
     const navigate = useNavigate()
     const { signInUser } = UseAuth();
 
-    const handleLogin = (data) => {
+    const handleLogin = (data) => {   
         signInUser(data.email, data.password)
             .then(result => {
                 console.log(result);
