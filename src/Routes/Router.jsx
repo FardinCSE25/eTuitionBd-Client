@@ -1,14 +1,32 @@
 import { createBrowserRouter } from "react-router";
-import Logo from "../Components/Logo/Logo";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home";
 import About from "../Components/About/About";
+
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register";
+
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
+
+// Student Pages
 import PostNewTuition from "../Pages/Dashboard/Post New Tuition/PostNewTuition";
+import MyTuitions from "../Pages/Dashboard/My Tuitions/MyTuitions";
+import AppliedTutors from "../Pages/Dashboard/Applied Tutors/AppliedTutors";
+import PaymentHistory from "../Pages/Dashboard/Payment History/PaymentHistory";
+import ProfileSettings from "../Pages/Dashboard/Profile Settings/ProfileSettings";
+
+// Tutor Pages
+import MyApplications from "../Pages/Dashboard/My Applications/MyApplications";
+import OngoingTuitions from "../Pages/Dashboard/Ongoing Tuitions/OngoingTuitions";
+import RevenueHistory from "../Pages/Dashboard/Revenue History/RevenueHistory";
+
+// Admin Pages
+import ManageUsers from "../Pages/Dashboard/Manage Users/ManageUsers";
+import ManageTuitions from "../Pages/Dashboard/Manage Tuitions/ManageTuitions";
+import ReportsAnalytics from "../Pages/Dashboard/Reports Analytics/ReportsAnalytics";
 
 export const router = createBrowserRouter([
   {
@@ -20,34 +38,87 @@ export const router = createBrowserRouter([
         Component: Home
       },
       {
-        path: 'about',
+        path: "about",
         Component: About
       }
     ]
   },
+
+  // Auth Routes
   {
-    path: '/',
+    path: "/",
     Component: AuthLayout,
     children: [
       {
-        path: 'login',
+        path: "login",
         Component: Login
       },
       {
-        path: 'register',
+        path: "register",
         Component: Register
       }
     ]
   },
+
+  // Dashboard Routes (Protected)
   {
-    path: 'dashboard',
-    element: <PrivateRoute>
-      <DashboardLayout />
-    </PrivateRoute>,
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
+      // Student
       {
-        path: 'post-new-tuition',
+        path: "post-new-tuition",
         Component: PostNewTuition
+      },
+      {
+        path: "my-tuitions",
+        Component: MyTuitions
+      },
+      {
+        path: "applied-tutors",
+        Component: AppliedTutors
+      },
+      {
+        path: "payment-history",
+        Component: PaymentHistory
+      },
+      {
+        path: "profile-settings",
+        Component: ProfileSettings
+      },
+
+      // Tutor
+      {
+        path: "my-applications",
+        Component: MyApplications
+      },
+      {
+        path: "ongoing-tuitions",
+        Component: OngoingTuitions
+      },
+      {
+        path: "revenue-history",
+        Component: RevenueHistory
+      },
+
+      // Admin
+      {
+        path: "manage-users",
+        element: <AdminRoute>
+          <ManageUsers />
+        </AdminRoute>
+      },
+      {
+        path: "manage-tuitions",
+        element: ManageTuitions
+      },
+      {
+        path: "reports-analytics",
+        element: ReportsAnalytics
       }
     ]
   }
