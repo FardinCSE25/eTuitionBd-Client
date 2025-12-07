@@ -56,7 +56,7 @@ const DashboardLayout = () => {
                         </svg>
                     </button>
 
-                    <span className="text-accent font-bold text-lg">eTuitionBd Dashboard</span>
+                    <span className="text-accent font-bold ml-2 text-lg">eTuitionBd Dashboard</span>
                 </nav>
 
                 {/* PAGE CONTENT */}
@@ -71,7 +71,7 @@ const DashboardLayout = () => {
                 <label htmlFor="dashboard-drawer" className="drawer-overlay" onClick={close}></label>
 
                 <aside
-                    className={`min-h-full bg-base-200 duration-300 flex flex-col 
+                    className={`min-h-full bg-secondary/95 duration-300 flex flex-col 
                         ${isOpen ? "w-64" : "w-20"}
                     `}
                 >
@@ -139,8 +139,8 @@ const DrawerItem = (to, label, icon, isOpen) => (
             `}
         // data-tip={!isOpen ? label : ""}
         >
-            <span className="text-xl">{icon}</span>
-            {isOpen && <span>{label}</span>}
+            <span className="text-xl text-accent">{icon}</span>
+            {isOpen && <span className='text-accent'>{label}</span>}
         </Link>
     </li>
 );
