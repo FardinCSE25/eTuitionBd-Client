@@ -1,13 +1,24 @@
 import React from 'react';
 import UseAuth from '../../../Hooks/UseAuth';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 const PostNewTuition = () => {
     const { register, handleSubmit } = useForm();
     const { user } = UseAuth();
 
-    const handlePostTuition = (data) => {
+    const handlePostTuition = async (data) => {
         console.log("Tuition Form Submitted:", data);
+
+        const result = await Swal.fire({
+            title: `📚 Confirm Tuition Post?`,
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#3B82F6",   
+            cancelButtonColor: "#1E293B",    
+            confirmButtonText: "<span style='color:white; font-weight:600;'>Confirm</span>",
+            cancelButtonText: "<span style='color:white; font-weight:600;'>Cancel</span>",
+        });
     };
 
     return (
