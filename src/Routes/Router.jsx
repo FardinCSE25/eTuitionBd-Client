@@ -8,6 +8,7 @@ import Login from "../Pages/Authentication/Login";
 import Register from "../Pages/Authentication/Register";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
+import PostNewTuition from "../Pages/Dashboard/Post New Tuition/PostNewTuition";
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +46,8 @@ export const router = createBrowserRouter([
     </PrivateRoute>,
     children: [
       {
-        
+        path: 'post-new-tuition',
+        Component: PostNewTuition
       }
     ]
   }
