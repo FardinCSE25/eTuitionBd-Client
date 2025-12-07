@@ -1,16 +1,77 @@
-# React + Vite
+🎓 eTuitionBd – Tuition Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, fully functional platform that connects students, tutors, and admins to simplify tuition management through automation, secure payments, and structured workflows.
 
-Currently, two official plugins are available:
+🌍 Live Site URL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 (Add your deployed URL here)
 
-## React Compiler
+🧠 Project Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+eTuitionBd is a smart tuition management solution designed to solve real-life problems in the private tutoring industry.
+It helps students find verified tutors easily, allows tutors to apply for matching tuitions, and gives admins full control over platform operations.
 
-## Expanding the ESLint configuration
+The system ensures transparency, smooth communication, and secure payments — creating a reliable ecosystem for both learners and educators.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🚀 Key Features
+👨‍🎓 Student Features
+
+Post new tuition requirements (subject, class, location, budget, schedule)
+
+View, edit, and delete own tuition posts
+
+Review tutor applications for their tuition posts
+
+Approve tutors via secure payment process
+
+Reject unwanted applications
+
+Track payment history and tuition status
+
+🧑‍🏫 Tutor Features
+
+Browse all approved tuition posts
+
+Apply to tuitions with qualification, experience & expected salary
+
+Track application status (Pending/Approved/Rejected)
+
+View ongoing tuitions after approval
+
+Check revenue/earning history
+
+🛡️ Admin Features
+
+Approve or reject student tuition posts
+
+Manage users (update roles, modify info, delete accounts)
+
+Monitor tutor applications
+
+View platform-wide payment history
+
+Access reports & analytics for total earnings
+
+🔄 System Workflow
+
+Student registers and posts tuition details.
+
+Tutors apply to available tuition posts that match their skill.
+
+Admin reviews tuition posts and controls platform integrity.
+
+Student approves a tutor by completing a secure payment.
+
+Tutor becomes officially assigned and the system updates automatically.
+
+🧰 Technologies Used
+
+Frontend: React.js, Tailwind CSS, DaisyUI, React Router, Framer Motion, TanStack Query
+Backend: Node.js, Express.js
+Database: MongoDB
+Auth & Security: Firebase, JWT
+Others: Axios, Stripe Payment, SweetAlert2
+
+👨‍💻 Developer
+
+Developed by: Fardin Ahmed
