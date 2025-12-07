@@ -2,17 +2,40 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { Eye, EyeOff, User, Mail, Lock, Phone, LogIn, BookOpen } from 'lucide-react';
-import { Link } from 'react-router';
+import { Eye, EyeOff, User, Mail, Lock, Phone, LogIn, BookOpen, Image } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router';
 import UseAuth from '../../Hooks/UseAuth';
 import SocialLogin from './SocialLogin';
+import axios from 'axios';
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { registerUser } = UseAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { registerUser, updateUserProfile } = UseAuth();
 
     const handleRegister = (data) => {
+        const photo = data.photo[0]
+        const formData = new FormData();
+        formData.append('image', photo);
+        const photo_API_URL = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imageHost}`;
+
+        axios.post(photo_API_URL, formData)
+            .then(result => {
+                const photoURL = result.data.data.url;
+
+                const userInfo = {
+                    email: data.email,
+                    displayName: data.name,
+                    photoURL: photoURL
+                };
+                
+                updateUserProfile(userInfo)
+                    .then(() => navigate(location.state || '/'))
+                    .catch(err => console.log(err));
+            })
+
         registerUser(data.email, data.password)
             .then(result => console.log(result.user))
             .catch(error => console.log(error));
@@ -103,6 +126,14 @@ const Register = () => {
                                 </button>
                             </div>
 
+                            <div>
+                                <label className="text-gray-700 font-semibold flex items-center mt-3 mb-2">
+                                    <Image className="w-5 h-5 mr-2 text-primary" /> Photo
+                                </label>
+                                <input type="file" {...register('photo', { required: true })} className="file-input w-full" />
+                                {errors.photo && <p className='text-red-500 mt-1 text-sm'>Photo is required.</p>}
+                            </div>
+
                             {errors.password?.type === "required" && (
                                 <p className="text-red-500 text-sm">Password is required.</p>
                             )}
@@ -154,7 +185,7 @@ const Register = () => {
 
                     <p className="text-center text-secondary mt-4">
                         Already have an account?
-                        <Link to="/login" className="text-primary font-semibold ml-1 hover:underline">
+                        <Link state={location.state} to="/login" className="text-primary font-semibold ml-1 hover:underline">
                             Login
                         </Link>
                     </p>

@@ -80,6 +80,13 @@ const Navbar = () => {
                 {/* RIGHT — Buttons (Desktop Only) */}
                 <div className="navbar-end hidden mr-5 lg:flex items-center gap-4">
 
+
+                    {user && (
+                        <div className="avatar w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
+                            <img src={user.photoURL} className="object-cover w-full h-full" />
+                        </div>
+                    )}
+                    
                     {user ? (
                         <button onClick={handleLogout} className="btn bg-primary hover:text-secondary text-white hover:bg-white hover:border-primary">
                             Logout

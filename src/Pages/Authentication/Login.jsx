@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { Eye, EyeOff, Mail, Lock, LogIn, BookOpen } from 'lucide-react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import UseAuth from '../../Hooks/UseAuth';
 import SocialLogin from './SocialLogin';
@@ -10,11 +10,16 @@ import SocialLogin from './SocialLogin';
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const location = useLocation()
+    const navigate = useNavigate()
     const { signInUser } = UseAuth();
 
     const handleLogin = (data) => {
         signInUser(data.email, data.password)
-            .then(result => console.log(result))
+            .then(result => {
+                console.log(result);
+                navigate(location?.state || "/");
+            })
             .catch(error => console.log(error));
     };
 
@@ -109,7 +114,7 @@ const Login = () => {
 
                         <p className="text-center text-gray-700 mt-6">
                             New to eTuitionBd?
-                            <Link to="/register" className="text-primary font-semibold ml-1 hover:underline">
+                            <Link state={location.state} to="/register" className="text-primary font-semibold ml-1 hover:underline">
                                 Register
                             </Link>
                         </p>
