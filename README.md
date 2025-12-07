@@ -1,77 +1,66 @@
-🎓 eTuitionBd – Tuition Management System
+# 🎓 eTuitionBd – Tuition Management System
+A modern platform that connects **Students**, **Tutors**, and **Admins** to streamline tuition posting, tutor applications, payments, and overall tuition management.
 
-A modern, fully functional platform that connects students, tutors, and admins to simplify tuition management through automation, secure payments, and structured workflows.
+---
 
-🌍 Live Site URL
+## 🌍 Live Site URL  
+👉 *Add your deployed URL here*
 
-👉 (Add your deployed URL here)
+---
 
-🧠 Project Overview
+## 🧠 Project Overview  
+**eTuitionBd** is a complete tuition management solution built to remove the traditional confusion between students and tutors.  
+It provides a structured system for posting tuition, applying for jobs, managing payments, and verifying tutors — all under one platform.
 
-eTuitionBd is a smart tuition management solution designed to solve real-life problems in the private tutoring industry.
-It helps students find verified tutors easily, allows tutors to apply for matching tuitions, and gives admins full control over platform operations.
+---
 
-The system ensures transparency, smooth communication, and secure payments — creating a reliable ecosystem for both learners and educators.
+## 🚀 Key Features
 
-🚀 Key Features
-👨‍🎓 Student Features
+### 👨‍🎓 Student Features
+- Post new tuition requirements (subject, class, location, budget, schedule)
+- Edit & delete tuition posts
+- View tutor applications received
+- Approve tutors via secure payment
+- Reject applications easily
+- View payment history and approved tuitions
 
-Post new tuition requirements (subject, class, location, budget, schedule)
+### 🧑‍🏫 Tutor Features
+- Browse available approved tuition posts
+- Apply for a tuition with:
+  - Qualifications  
+  - Experience  
+  - Expected salary
+- Track application status (Pending / Approved / Rejected)
+- View ongoing tuitions after approval
+- Check revenue & earning history
 
-View, edit, and delete own tuition posts
+### 🛡️ Admin Features
+- Approve or reject student tuition posts
+- Manage all users (update role, modify info, delete accounts)
+- Review tutor applications & maintain platform integrity
+- Full financial analytics & transaction history
+- Monitor platform performance
 
-Review tutor applications for their tuition posts
+---
 
-Approve tutors via secure payment process
+## 🔄 System Workflow
+1. **Student registers** → posts tuition requirement  
+2. **Tutor applies** to tuition posts  
+3. **Admin verifies & approves** the tuition post  
+4. **Student approves tutor** via secure Stripe payment  
+5. Tutor becomes assigned → application status auto updates  
 
-Reject unwanted applications
+---
 
-Track payment history and tuition status
+## 🧰 Technologies Used
+**Frontend:** React.js, Tailwind CSS, DaisyUI, React Router, Framer Motion, TanStack Query  
+**Backend:** Node.js, Express.js  
+**Database:** MongoDB  
+**Authentication:** Firebase Auth, JWT  
+**Payments:** Stripe  
+**Others:** Axios, SweetAlert2
 
-🧑‍🏫 Tutor Features
+---
 
-Browse all approved tuition posts
-
-Apply to tuitions with qualification, experience & expected salary
-
-Track application status (Pending/Approved/Rejected)
-
-View ongoing tuitions after approval
-
-Check revenue/earning history
-
-🛡️ Admin Features
-
-Approve or reject student tuition posts
-
-Manage users (update roles, modify info, delete accounts)
-
-Monitor tutor applications
-
-View platform-wide payment history
-
-Access reports & analytics for total earnings
-
-🔄 System Workflow
-
-Student registers and posts tuition details.
-
-Tutors apply to available tuition posts that match their skill.
-
-Admin reviews tuition posts and controls platform integrity.
-
-Student approves a tutor by completing a secure payment.
-
-Tutor becomes officially assigned and the system updates automatically.
-
-🧰 Technologies Used
-
-Frontend: React.js, Tailwind CSS, DaisyUI, React Router, Framer Motion, TanStack Query
-Backend: Node.js, Express.js
-Database: MongoDB
-Auth & Security: Firebase, JWT
-Others: Axios, Stripe Payment, SweetAlert2
-
-👨‍💻 Developer
-
-Developed by: Fardin Ahmed
+## 👨‍💻 Developer  
+**Developed by:** Fardin Ahmed  
