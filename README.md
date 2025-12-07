@@ -48,7 +48,7 @@ It provides a structured system for posting tuition, applying for jobs, managing
 2. **Tutor applies** to tuition posts  
 3. **Admin verifies & approves** the tuition post  
 4. **Student approves tutor** via secure Stripe payment  
-5. Tutor becomes assigned → application status auto updates  
+5. **Tutor becomes assigned** → application status auto updates  
 
 ---
 
