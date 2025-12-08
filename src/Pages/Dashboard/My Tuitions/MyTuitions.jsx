@@ -56,7 +56,7 @@ const MyTuitions = () => {
             <h1 className="text-center text-3xl md:text-4xl font-bold text-secondary pt-5 pb-2">
                 My Tuitions <span className="text-primary ml-2">({tuitions.length})</span>
             </h1>
-            <p className='text-center text-sm text-secondary'>
+            <p className='text-center text-sm text-primary'>
                 (Approved only)
             </p>
             {/* Table */}
