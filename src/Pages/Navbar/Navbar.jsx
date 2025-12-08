@@ -47,7 +47,7 @@ const Navbar = () => {
                             {user && (
                                 <li className="flex items-center gap-0">
                                     <div className="avatar rounded-full overflow-hidden">
-                                        <img src={user.photoURL} className="rounded-full w-10 h-10" />
+                                        <img referrerPolicy="no-referrer" src={user.photoURL} className="rounded-full w-10 h-10" />
                                     </div>
                                     <span className="font-semibold">{user.displayName}</span>
                                 </li>
