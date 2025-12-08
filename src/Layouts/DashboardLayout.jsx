@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { CiDeliveryTruck } from 'react-icons/ci';
-import { FaTasks, FaUsers } from 'react-icons/fa';
+import { CiBookmark, CiDeliveryTruck, CiViewList } from 'react-icons/ci';
+import { FaMoneyCheckAlt, FaPlusCircle, FaTasks, FaUserCheck, FaUserCog, FaUsers, FaUsersCog, FaWpforms } from 'react-icons/fa';
 import { FaMotorcycle, FaRegCreditCard } from 'react-icons/fa6';
 import { Link, Outlet } from 'react-router';
 import useRole from '../Hooks/UseRole';
-import { RiEBikeFill } from 'react-icons/ri';
+import { RiBarChart2Line, RiEBikeFill, RiMoneyDollarCircleFill } from 'react-icons/ri';
 import { SiGoogletasks } from 'react-icons/si';
 
 const DashboardLayout = () => {
@@ -98,37 +98,39 @@ const DashboardLayout = () => {
                         {
                             role.role === "Student" && (
                                 <>
-                                    {DrawerItem("/dashboard/my-tuitions", "My Tuitions", <CiDeliveryTruck />, isOpen)}
+                                    {DrawerItem("/dashboard/my-tuitions", "My Tuitions", <CiBookmark />, isOpen)}
 
-                                    {DrawerItem("/dashboard/post-new-tuition", "Post New Tuition", <FaRegCreditCard />, isOpen)}
+                                    {DrawerItem("/dashboard/post-new-tuition", "Post New Tuition", <FaPlusCircle />, isOpen)}
 
-                                    {DrawerItem("/dashboard/applied-tutors", "Applied Tutors", <FaRegCreditCard />, isOpen)}
+                                    {DrawerItem("/dashboard/applied-tutors", "Applied Tutors", <FaUserCheck />, isOpen)}
 
-                                    {DrawerItem("/dashboard/payment-history", "Payment History", <FaRegCreditCard />, isOpen)}
+                                    {DrawerItem("/dashboard/payment-history", "Payment History", <FaMoneyCheckAlt />, isOpen)}
 
-                                    {DrawerItem("/dashboard/profile-settings", "Profile Settings", <FaRegCreditCard />, isOpen)}
+                                    {DrawerItem("/dashboard/profile-settings", "Profile Settings", <FaUserCog />, isOpen)}
                                 </>
                             )
                         }
 
                         {role.role === "Tutor" && (
                             <>
-                                {DrawerItem("/dashboard/my-applications", "My Applications", <FaTasks />, isOpen)}
+                                {DrawerItem("/dashboard/my-applications", "My Applications", <FaWpforms />, isOpen)}
 
-                                {DrawerItem("/dashboard/ongoing-tuitions", "Ongoing Tuitions", <SiGoogletasks />, isOpen)}
+                                {DrawerItem("/dashboard/ongoing-tuitions", "Ongoing Tuitions", <SiTask />, isOpen)}
 
-                                {DrawerItem("/dashboard/revenue-history", "Revenue History", <SiGoogletasks />, isOpen)}
+                                {DrawerItem("/dashboard/revenue-history", "Revenue History", <RiMoneyDollarCircleFill />, isOpen)}
                             </>
                         )}
+
                         {role.role === "Admin" && (
                             <>
-                                {DrawerItem("/dashboard/manage-users", "User Management", <FaUsers />, isOpen)}
+                                {DrawerItem("/dashboard/manage-users", "User Management", <FaUsersCog />, isOpen)}
 
-                                {DrawerItem("/dashboard/manage-tuitions", "Tuition Management", <FaMotorcycle />, isOpen)}
+                                {DrawerItem("/dashboard/manage-tuitions", "Tuition Management", <CiViewList />, isOpen)}
 
-                                {DrawerItem("/dashboard/reports-analytics", "Reports & Analytics", <RiEBikeFill />, isOpen)}
+                                {DrawerItem("/dashboard/reports-analytics", "Reports & Analytics", <RiBarChart2Line />, isOpen)}
                             </>
                         )}
+
 
                     </ul>
                 </aside>

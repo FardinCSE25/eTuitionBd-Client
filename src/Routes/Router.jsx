@@ -114,11 +114,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "manage-tuitions",
-        element: ManageTuitions
+        element: <AdminRoute>
+          <ManageTuitions />
+        </AdminRoute>
       },
       {
         path: "reports-analytics",
-        element: ReportsAnalytics
+        element: <AdminRoute>
+          <ReportsAnalytics />
+        </AdminRoute>
       }
     ]
   }

@@ -9,6 +9,8 @@ const axiosSecure = axios.create({
 
 const UseAxiosSecure = () => {
     const { user, logOut } = UseAuth()
+    // console.log(user.accessToken);
+    
     const navigate = useNavigate()
     useEffect(() => {
         const reqInterceptor = axiosSecure.interceptors.request.use(config => {

@@ -83,7 +83,7 @@ const Navbar = () => {
 
                     {user && (
                         <div className="avatar w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
-                            <img src={user.photoURL} className="object-cover w-full h-full" />
+                            <img referrerPolicy="no-referrer" src={user.photoURL} className="object-cover w-full h-full" />
                         </div>
                     )}
                     
