@@ -5,7 +5,7 @@ import { FaMotorcycle, FaRegCreditCard } from 'react-icons/fa6';
 import { Link, Outlet } from 'react-router';
 import useRole from '../Hooks/UseRole';
 import { RiBarChart2Line, RiEBikeFill, RiMoneyDollarCircleFill } from 'react-icons/ri';
-import { SiGoogletasks } from 'react-icons/si';
+import { SiGoogletasks, SiTask } from 'react-icons/si';
 
 const DashboardLayout = () => {
     const { role } = useRole();

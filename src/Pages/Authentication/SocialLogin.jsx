@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
 
 const SocialLogin = () => {
-    const { signInGoogle } = UseAuth()
+    const { signInGoogle, setLoading, setUser } = UseAuth()
     const location = useLocation();
     const navigate = useNavigate();
     const axiosSecure = UseAxiosSecure()
@@ -14,8 +14,9 @@ const SocialLogin = () => {
     const handleGoogleSignIn = () => {
         signInGoogle()
             .then(result => {
-                console.log(result.user.accessToken);
-                
+                console.log(result.user);
+                setUser(result.user)
+                setLoading(false)
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successful',
@@ -23,18 +24,22 @@ const SocialLogin = () => {
                     timer: 2000,
                     showConfirmButton: false
                 });
-                navigate(location?.state || "/");
-                
-            const userInfo = {
+
+                const userInfo = {
                     email: result.user.email,
                     displayName: result.user.displayName,
                     photoURL: result.user.photoURL,
                     role: "Student"
                 };
 
-                axiosSecure.post('/users', userInfo)
+                axiosSecure.post('/users', userInfo, {
+                    headers: {
+                        Authorization: `Bearer ${result.user?.accessToken}`
+                    }
+                })
                     .then(res => {
                         console.log('User data has been stored', res.data);
+                        navigate(location?.state || "/");
                     })
                     .catch(err => console.log(err));
             })
