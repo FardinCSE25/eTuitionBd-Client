@@ -33,6 +33,8 @@ const ManageTuitions = () => {
                 }
             })
     }
+    
+    const filteredTuitions = tuitions.filter(tuition=> tuition.status === "Pending")
 
     const handleApproval = tuition => updateTuitionStatus(tuition, 'Approved');
     const handleRejection = tuition => updateTuitionStatus(tuition, 'Rejected');
@@ -44,7 +46,7 @@ const ManageTuitions = () => {
 
             {/* Header */}
             <h1 className="text-center text-3xl md:text-4xl font-bold text-secondary py-5">
-                Tuition Pending Approval <span className="text-primary ml-2">({tuitions.length})</span>
+                Tuition Pending Approval <span className="text-primary ml-2">({filteredTuitions.length})</span>
             </h1>
 
             {/* Table */}
@@ -82,7 +84,10 @@ const ManageTuitions = () => {
                                     </span>
                                 </td>
                                 <td className="flex gap-2">
-                                    <button
+                                    {
+                                        tuition.status === "Pending" && (
+                                            <>
+                                            <button
                                         onClick={() => handleApproval(tuition)}
                                         className="btn btn-square bg-primary text-accent border-none hover:bg-primary/80 shadow-md"
                                     >
@@ -95,6 +100,9 @@ const ManageTuitions = () => {
                                     >
                                         <IoPersonRemoveSharp />
                                     </button>
+                                    </>
+                                        )
+                                    }
                                 </td>
                             </tr>
                         ))}
