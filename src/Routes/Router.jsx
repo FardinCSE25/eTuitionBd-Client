@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layouts/MainLayout";
 import Home from "../Pages/Home/Home";
 import About from "../Components/About/About";
+import Tuitions from "../Pages/Tuitions/Tuitions";
+import Tutors from "../Pages/Tutors/Tutors";
 
 import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../Pages/Authentication/Login";
@@ -27,6 +29,7 @@ import RevenueHistory from "../Pages/Dashboard/Revenue History/RevenueHistory";
 import ManageUsers from "../Pages/Dashboard/Manage Users/ManageUsers";
 import ManageTuitions from "../Pages/Dashboard/Manage Tuitions/ManageTuitions";
 import ReportsAnalytics from "../Pages/Dashboard/Reports Analytics/ReportsAnalytics";
+import TuitionDetails from "../Pages/Tuition Details/TuitionDetails";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +43,20 @@ export const router = createBrowserRouter([
       {
         path: "about",
         Component: About
+      },
+      {
+        path: "tuitions",
+        Component: Tuitions
+      },
+      {
+        path: "tutors",
+        Component: Tutors
+      },
+      {
+        path: "tuition-details/:id",
+        element: <PrivateRoute>
+          <TuitionDetails />
+        </PrivateRoute>
       }
     ]
   },
