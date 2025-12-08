@@ -9,10 +9,8 @@ const axiosSecure = axios.create({
 
 const UseAxiosSecure = () => {
     const { user, loading, logOut } = UseAuth()
-    console.log(user, loading, user?.accessToken, );
+    // console.log(user, loading, user?.accessToken, );
 
-
-    
     const navigate = useNavigate()
     useEffect(() => {
         if(!loading && user?.accessToken){
