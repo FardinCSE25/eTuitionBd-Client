@@ -19,7 +19,7 @@ export default function About() {
     ];
 
     return (
-        <section className="bg-secondary rounded-xl my-20 py-16 px-5">
+        <section className="bg-secondary rounded-xl mt-32 my-20 py-16 px-5">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
                 
                 {/* Image Section */}
