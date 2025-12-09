@@ -62,7 +62,7 @@ const Tutors = () => {
                                     </td>
 
                                     <td className="text-secondary">{tutor.email}</td>
-                                    <td className="text-secondary">{new Date(tutor.created_at).toLocaleDateString()}</td>
+                                    <td className="text-secondary">{new Date(tutor.created_at).toLocaleDateString("en-GB")}</td>
 
                                 </tr>
                             ))}

@@ -64,7 +64,7 @@ const TuitionDetails = () => {
                 </div>
                 <div>
                     <p className="font-semibold text-gray-700">Created At:</p>
-                    <p className="text-gray-900">{new Date(exactTuition.created_at).toLocaleString()}</p>
+                    <p className="text-gray-900">{new Date(exactTuition.created_at).toLocaleString("en-GB")}</p>
                 </div>
             </div>
 
