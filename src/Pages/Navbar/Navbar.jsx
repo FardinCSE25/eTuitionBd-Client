@@ -26,7 +26,7 @@ const Navbar = () => {
 
     return (
         <div className="py-4 flex justify-center w-full">
-            <div className="navbar fixed z-1000 top-0 w-full bg-white shadow-sm px-5 py-7 rounded-xl">
+            <div className="navbar lg:fixed lg:z-1000 lg:top-0 w-full bg-white shadow-sm px-5 py-7 rounded-xl">
 
                 {/* LEFT — Logo + Mobile Menu */}
                 <div className="navbar-start flex items-center gap-2">
