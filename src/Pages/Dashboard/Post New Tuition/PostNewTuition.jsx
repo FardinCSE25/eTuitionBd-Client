@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 
 const PostNewTuition = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const { user } = UseAuth();
     const axiosSecure = UseAxiosSecure()
 
@@ -33,7 +33,7 @@ const PostNewTuition = () => {
                         timer: 2500,
                         showConfirmButton: false
                     });
-                    // navigate('/dashboard/my-parcels');
+             reset()
                 }
             } catch (err) {
                 console.log(err);

@@ -1,35 +1,81 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router';
 import UseAxios from '../../Hooks/UseAxios';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../Components/Loading/Loading';
 import UseRole from '../../Hooks/UseRole';
+import UseAuth from '../../Hooks/UseAuth';
+import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
+import Swal from 'sweetalert2';
 
 const TuitionDetails = () => {
     const { id } = useParams();
     const axiosInstance = UseAxios();
-    const {role} = UseRole()
+    const { role } = UseRole()
+    const modalRef = useRef(null);
+    const { user } = UseAuth()
+    const axiosSecure = UseAxiosSecure()
+    const [selectedTuition, setSelectedTuition] = useState(null)
 
-    const { data: tuitions = [], isLoading } = useQuery({
+    const { data: tuitions = [], isLoading, refetch } = useQuery({
         queryKey: ["tuitions"],
         queryFn: async () => {
             const res = await axiosInstance.get(`/all-tuitions?status=Approved`);
             return res.data;
         },
     });
+    const exactTuition = tuitions.find(tuition => tuition._id === id);
+
+    // const { data: appliedTuitions = [], isLoading: appliedLoading } = useQuery({
+    //     queryKey: ["tuitions", exactTuition?._id],
+    //     queryFn: async () => {
+    //         const res = await axiosSecure.get(`/tuitions/${exactTuition?._id}?email=${user.email}`);
+    //         return res.data;
+    //     },
+    // })
+    // console.log(appliedTuitions);
 
     if (isLoading) {
         return <Loading />;
     }
 
-    const exactTuition = tuitions.find(tuition => tuition._id === id);
-
     if (!exactTuition) {
         return (
-            <div className="w-11/12 mx-auto my-20 p-6 bg-white rounded-xl shadow-md text-center">
-                <h2 className="text-xl font-semibold text-red-500">Tuition not found!</h2>
+            <div className="w-11/12 mx-auto mt-44 mb-20 py-24 px-6 bg-white rounded-xl shadow-md text-center">
+                <h2 className="text-4xl font-semibold text-red-500">Tuition not found!</h2>
             </div>
         );
+    }
+
+    const handleApply = (e) => {
+        e.preventDefault()
+
+        const form = e.target;
+        const appliedTutorInfo = {
+            tuition: exactTuition,
+            name: form.name.value,
+            email: form.email.value,
+            qualification: form.qualification.value,
+            experience: form.experience.value,
+            expectedSalary: form.salary.value,
+            photoURL : user.photoURL
+        };
+
+        axiosSecure.patch(`/tuitions/apply`, appliedTutorInfo)
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    refetch();
+                    modalRef.current.close();
+                    Swal.fire({
+                        title: "Applied!",
+                        text: "You have applied for the tuition successfully!",
+                        icon: "success",
+                        confirmButtonColor: "#3B82F6"
+                    });
+                    ;
+                }
+            })
+            .catch(err => console.log(err));
     }
 
     return (
@@ -68,18 +114,110 @@ const TuitionDetails = () => {
                 </div>
             </div>
 
-            {/* Apply Button */}
             {
                 role.role === "Tutor" &&
                 <div className="mt-6 text-center">
-                    <button
-                        className="btn btn-primary px-6 py-2 rounded-lg hover:bg-primary/90 transition"
-                        onClick={() => alert("Apply function not implemented yet")}
-                    >
-                        Apply
-                    </button>
+                    {
+                        selectedTuition?.length > 0 ? (
+                            <button className="btn btn-primary" disabled>Applied</button>
+                        ) : (
+                            <button
+                                className="btn btn-primary"
+                                onClick={() => {
+                                    modalRef.current.showModal();
+                                    setSelectedTuition(exactTuition)
+                                }}
+                            >
+                                Apply
+                            </button>
+                        )
+                    }
                 </div>
             }
+
+            <dialog ref={modalRef} className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-2xl mb-4 text-primary">Apply for this Tuition</h3>
+
+
+                    <form onSubmit={handleApply} className="grid gap-4">
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-semibold">Your Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                defaultValue={user.displayName}
+                                className="input input-bordered w-full"
+                                readOnly
+                            />
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-semibold">Your Email</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="email"
+                                defaultValue={user.email}
+                                className="input input-bordered w-full"
+                                readOnly
+                            />
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-semibold">Qualifications</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="qualification"
+
+                                className="input input-bordered w-full"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-semibold">Experience (Years)</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="experience"
+
+                                className="input input-bordered w-full"
+                                required
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-semibold">Expected Salary</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="salary"
+                                className="input input-bordered w-full"
+                                required
+                            />
+                        </div>
+
+                        <button className="btn btn-primary text-accent mt-3" type="submit">
+                            Confirm
+                        </button>
+                    </form>
+
+                    <button
+                        className="btn btn-sm btn-circle absolute right-2 top-2"
+                        onClick={() => modalRef.current.close()}
+                    >
+                        ✕
+                    </button>
+                </div>
+            </dialog>
         </div>
     );
 };

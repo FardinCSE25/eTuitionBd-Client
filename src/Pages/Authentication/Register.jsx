@@ -9,6 +9,7 @@ import SocialLogin from './SocialLogin';
 import axios from 'axios';
 import UseAxiosSecure from '../../Hooks/UseAxiosSecure';
 import Swal from 'sweetalert2';
+import UseAxios from '../../Hooks/UseAxios';
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +18,7 @@ const Register = () => {
     const location = useLocation();
     const { registerUser, updateUserProfile } = UseAuth();
     const axiosSecure = UseAxiosSecure()
+    // const axiosInstance = UseAxios()
 
     const handleRegister = (data) => {
         console.log(data);
@@ -37,7 +39,11 @@ const Register = () => {
                     role: data.role
                 };
 
-                axiosSecure.post('/users', userInfo)
+                axiosSecure.post('/users', userInfo, {
+                    headers: {
+                        Authorization: `Bearer ${result.user?.accessToken}`
+                    }
+                })
                     .then(res => {
                         if (res.data.insertedId) {
                             Swal.fire({

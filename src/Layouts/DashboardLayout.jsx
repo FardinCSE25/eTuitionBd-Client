@@ -9,7 +9,7 @@ import { SiGoogletasks, SiTask } from 'react-icons/si';
 
 const DashboardLayout = () => {
     const { role } = useRole();
-    console.log(role);
+    // console.log(role);
 
     const [isOpen, setIsOpen] = useState(false);
 

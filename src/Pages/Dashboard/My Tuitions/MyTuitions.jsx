@@ -41,10 +41,10 @@ const MyTuitions = () => {
         })
     };
 
-    const handleTuitionUpdate = (event) => {
-        event.preventDefault();
+    const handleTuitionUpdate = (e) => {
+        e.preventDefault();
 
-        const form = event.target;
+        const form = e.target;
         const updatedTuition = {
             studentName: form.studentName.value,
             subject: form.subject.value,
