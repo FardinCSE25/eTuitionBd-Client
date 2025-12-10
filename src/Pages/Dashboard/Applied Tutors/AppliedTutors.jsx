@@ -20,13 +20,19 @@ const AppliedTutors = () => {
 
     if (isLoading) return <Loading />;
 
-    const handleAccept = async (id) => {
-        const confirm = await Swal.fire({ title: "Accept This Tutor?", icon: "question", showCancelButton: true });
-        if (confirm.isConfirmed) {
-            await axiosSecure.patch(`/applications/${id}`, { status: "Accepted" });
-            refetch();
-            Swal.fire("Accepted", "Tutor has been accepted!", "success");
+    const handleAccept = async (app) => {
+
+        const paymentInfo = {
+            fee : app.tutorExpectedSalary,
+            tuitionId : app._id,
+            studentEmail: app.studentEmail,
+            subject: app.subject,
+            tutorEmail: app.tutorEmail
         }
+
+       const res = await axiosSecure.post("/create-checkout-session", paymentInfo)
+       console.log(res.data);
+       window.location.href = res.data.url
     };
 
     const handleReject = (app) => {
@@ -104,8 +110,15 @@ const AppliedTutors = () => {
 
                         {/* Action Buttons */}
                         <div className='flex justify-between mt-6'>
+                           {
+                            app.approvalStatus === "Approved" ? <button
+                                disabled
+                                className='px-5 py-2 bg-green-800 text-white rounded-lg font-semibold shadow'
+                            >
+                                Accepted
+                            </button> :  <>
                             <button
-                                onClick={() => handleAccept(app._id)}
+                                onClick={() => handleAccept(app)}
                                 className='px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold shadow'
                             >
                                 Accept
@@ -116,7 +129,8 @@ const AppliedTutors = () => {
                                 className='px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold shadow'
                             >
                                 Reject
-                            </button>
+                            </button></>
+                           }
                         </div>
 
                     </div>

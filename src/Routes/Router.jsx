@@ -30,6 +30,8 @@ import ManageUsers from "../Pages/Dashboard/Manage Users/ManageUsers";
 import ManageTuitions from "../Pages/Dashboard/Manage Tuitions/ManageTuitions";
 import ReportsAnalytics from "../Pages/Dashboard/Reports Analytics/ReportsAnalytics";
 import TuitionDetails from "../Pages/Tuition Details/TuitionDetails";
+import PaymentSuccess from "../Pages/Payment/PaymentSuccess";
+import PaymentCancel from "../Pages/Payment/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +108,14 @@ export const router = createBrowserRouter([
       {
         path: "profile-settings",
         Component: ProfileSettings
+      },
+      {
+        path: "payment-success",
+        Component: PaymentSuccess
+      },
+      {
+        path: "payment-cancelled",
+        Component: PaymentCancel
       },
 
       // Tutor
