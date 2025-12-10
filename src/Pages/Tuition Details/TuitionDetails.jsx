@@ -16,6 +16,8 @@ const TuitionDetails = () => {
     const { user } = UseAuth()
     const axiosSecure = UseAxiosSecure()
     const [selectedTuition, setSelectedTuition] = useState(null)
+    console.log(selectedTuition);
+    
 
     const { data: tuitions = [], isLoading, refetch } = useQuery({
         queryKey: ["tuitions"],
