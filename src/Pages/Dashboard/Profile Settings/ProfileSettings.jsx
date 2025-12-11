@@ -57,6 +57,7 @@ const ProfileSettings = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
         >
+            <title>eTuitionBd- Profile Settings</title>
             <div className="relative mb-6">
                 <img
                     src={p.photoURL}

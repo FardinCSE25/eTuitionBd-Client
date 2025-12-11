@@ -82,6 +82,7 @@ const TuitionDetails = () => {
 
     return (
         <div className="w-11/12 md:w-2/3 mx-auto mt-36 mb-44 p-6 bg-white rounded-xl shadow-md">
+            <title>eTuitionBd- Tuition Details</title>
             <h1 className="text-2xl md:text-3xl font-bold text-secondary mb-10 text-center">
                 Tuition Details
             </h1>

@@ -45,7 +45,6 @@ const MyApplications = () => {
         });
     };
 
-    // UPDATE APPLICATION
     const handleUpdate = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -68,7 +67,7 @@ const MyApplications = () => {
 
     return (
         <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl p-6">
-
+            <title>eTuitionBd- My Applications</title>
             <h1 className="text-center text-3xl font-bold text-secondary">
                 My Applications <span className="text-primary ml-1">({applications.length})</span>
             </h1>
@@ -78,7 +77,7 @@ const MyApplications = () => {
 
             <div className="overflow-x-auto mt-6">
                 <table className="table">
-                    <thead className="bg-secondary/10 text-secondary">
+                    <thead className="bg-primary text-accent">
                         <tr>
                             <th>Sl No</th>
                             <th>Student</th>
@@ -112,7 +111,7 @@ const MyApplications = () => {
                                 <td>{new Date(app.applied_at).toLocaleString("en-GB")}</td>
 
                                 <td className="flex gap-2">
-                                    {/* Allow Update only if Pending */}
+                                   
                                     {app.applicationStatus === "Pending" && (
                                         <button
                                             className="btn btn-square bg-primary text-white"
@@ -138,7 +137,7 @@ const MyApplications = () => {
                 </table>
             </div>
 
-            {/* Update Modal */}
+          
             <dialog ref={modalRef} className="modal">
                 <div className="modal-box">
                     <h3 className="font-bold text-2xl mb-4 text-primary">Update Application</h3>

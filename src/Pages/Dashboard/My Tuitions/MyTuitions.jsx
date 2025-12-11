@@ -61,7 +61,7 @@ const MyTuitions = () => {
                         title: "Updated!",
                         text: "Tuition updated successfully!",
                         icon: "success",
-                        confirmButtonColor: "#3B82F6" 
+                        confirmButtonColor: "#3B82F6"
                     });
                     ;
                 }
@@ -71,7 +71,7 @@ const MyTuitions = () => {
 
     return (
         <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl p-6">
-
+            <title>eTuitionBd- My Tuitions</title>
             <h1 className="text-center text-3xl font-bold text-secondary">
                 My Tuitions <span className="text-primary ml-1"> ({tuitions.length})</span>
             </h1>
@@ -99,23 +99,27 @@ const MyTuitions = () => {
                                 <td>{tuition.class}</td>
                                 <td>{tuition.budget}</td>
                                 <td className="flex gap-2">
-                                    <button
-                                        className="btn btn-square bg-primary text-white"
-                                        onClick={() => {
-                                            setSelectedTuition(tuition);
-                                            modalRef.current.showModal();
-                                        }}
-                                    >
-                                        <FaEdit />
-                                    </button>
+                                    {
+                                        tuition.approvalStatus !== "Approved" && <>
+                                            <button
+                                                className="btn btn-square bg-primary text-white"
+                                                onClick={() => {
+                                                    setSelectedTuition(tuition);
+                                                    modalRef.current.showModal();
+                                                }}
+                                            >
+                                                <FaEdit />
+                                            </button>
 
-                                    <button
-                                        onClick={() => handleTuitionDelete(tuition._id)}
-                                        className="btn btn-square bg-red-500 text-white"
-                                    >
-                                        <FaTrash />
-                                    </button>
+                                            <button
+                                                onClick={() => handleTuitionDelete(tuition._id)}
+                                                className="btn btn-square bg-red-500 text-white"
+                                            >
+                                                <FaTrash />
+                                            </button>
+                                        </>
 
+                                    }
                                 </td>
                             </tr>
                         ))}

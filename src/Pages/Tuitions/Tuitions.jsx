@@ -1,5 +1,5 @@
 // src/pages/Tuitions.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import UseAxios from '../../Hooks/UseAxios';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../Components/Loading/Loading';
@@ -8,14 +8,29 @@ import { Link } from 'react-router';
 
 const Tuitions = () => {
     const axiosInstance = UseAxios();
+    const [search, setSearch] = useState("");
+    const [sort, setSort] = useState("Default");
 
-    const { data: tuitions = [], isLoading } = useQuery({
-        queryKey: ["tuitions"],
+    let { data: tuitions = [], isLoading } = useQuery({
+        queryKey: ["tuitions", search],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/all-tuitions?status=Approved`);
+            const res = await axiosInstance.get(`/all-tuitions?status=Approved&search=${search}`);
             return res.data;
         },
     });
+
+  const sortedTuitions = (() => {
+        if (sort == 'Higher to Lower Budget') {
+            return tuitions.sort((a, b) => (b.budget) - (a.budget))
+        }
+        else if (sort == 'Lower to Higher Budget') {
+            return tuitions.sort((a, b) => (a.budget) - (b.budget))
+        }
+        else {
+            return tuitions
+        }
+    })()
+
 
     if (isLoading) {
         return <Loading />
@@ -28,6 +43,46 @@ const Tuitions = () => {
                 <h1 className="text-center text-3xl font-bold text-secondary">
                     All Tuitions <span className="text-primary ml-1"> ({tuitions.length})</span>
                 </h1>
+                
+
+               <div className='flex justify-between items-center my-12'>
+                 <div>
+                    <select className='border-2 border-black rounded-md p-1' value={sort} onChange={e => setSort(e.target.value)}>
+                        <option value="Default">Default</option>
+                        <option value="Higher to Lower Budget">Higher to Lower Budget</option>
+                        <option value="Lower to Higher Budget">Lower to Higher Budget</option>
+                    </select>
+                </div>
+
+                
+                    <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-xl shadow-md w-full md:w-1/3">
+                        <svg
+                            className="h-6 opacity-60"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <g
+                                strokeLinejoin="round"
+                                strokeLinecap="round"
+                                strokeWidth="2.5"
+                                fill="none"
+                                stroke="currentColor"
+                            >
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </g>
+                        </svg>
+                        <input
+                            onChange={(e) => {
+                                setSearch(e.target.value)
+                            }}
+                            type="search"
+                            placeholder="Search by subject or class"
+                            className="w-full bg-transparent outline-none text-secondary placeholder-secondary"
+                        />
+                    </div>
+               
+               </div>
 
                 <div className="overflow-x-auto mt-6">
                     <table className="table w-full">
@@ -41,7 +96,7 @@ const Tuitions = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {tuitions.map((tuition, index) => (
+                            {sortedTuitions.map((tuition, index) => (
                                 <tr key={tuition._id} className="hover:bg-primary/10 transition">
                                     <td className="text-secondary">{index + 1}</td>
 

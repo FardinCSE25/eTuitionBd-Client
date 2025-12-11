@@ -20,7 +20,10 @@ const Navbar = () => {
             <li><NavLink to="/tuitions">Tuitions</NavLink></li>
             <li><NavLink to="/tutors">Tutors</NavLink></li>
             <li><NavLink to="/about">About</NavLink></li>
-            {user && <li><NavLink to="/dashboard">Dashboard</NavLink></li>}
+            {user && <>
+                <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+            </>
+            }
         </>
     );
 
@@ -31,7 +34,6 @@ const Navbar = () => {
                 {/* LEFT — Logo + Mobile Menu */}
                 <div className="navbar-start flex items-center gap-2">
 
-                    {/* Mobile Hamburger */}
                     <div className="dropdown lg:hidden">
                         <button tabIndex={0} className="btn btn-ghost p-1">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none"
@@ -81,12 +83,35 @@ const Navbar = () => {
                 <div className="navbar-end hidden mr-5 lg:flex items-center gap-4">
 
 
-                    {user && (
-                        <div className="avatar w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
-                            <img referrerPolicy="no-referrer" src={user.photoURL} className="object-cover w-full h-full" />
-                        </div>
-                    )}
-                    
+                    <div className="flex items-center ">
+                        {user &&
+                            <div className="dropdown lg:ml-0 ml-64 dropdown-end">
+                                <div
+                                    tabIndex={0}
+                                    role="button"
+                                    className="btn w-12 btn-ghost btn-circle avatar"
+                                >
+                                    <div className="border-2 border-[#228B22] rounded-full">
+                                        <img
+                                            alt="Tailwind CSS Navbar component"
+                                            referrerPolicy="no-referrer"
+                                            src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                                        />
+                                    </div>
+                                </div>
+                                <ul tabIndex="-1"
+                                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-60 p-5 shadow" >
+                                    {user && (
+                                        <li className="flex items-center gap-0 px-auto">
+                                            <span className="font-semibold text-lg">{user.displayName}</span>
+                                            <span className="font-semibold">{user.email}</span>
+                                        </li>
+                                    )}
+                                </ul>
+                            </div>
+                        }
+                    </div>
+
                     {user ? (
                         <button onClick={handleLogout} className="btn bg-primary hover:text-secondary text-white hover:bg-white hover:border-primary">
                             Logout

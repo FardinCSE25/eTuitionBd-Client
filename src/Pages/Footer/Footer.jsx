@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaFacebook, FaYoutube } from "react-icons/fa";
 import { SiX } from 'react-icons/si';
+import { Link } from 'react-router';
 
 const Footer = () => {
     return (
@@ -35,10 +36,10 @@ const Footer = () => {
                     <h3 className="font-bold text-lg mb-3">Quick Links & Socials</h3>
                     <ul className="space-y-2 text-sm opacity-90">
                         <li>🏠 Home</li>
-                        <li>📚 Tuition Listing</li>
-                        <li>🧑‍🏫 Tutors</li>
-                        <li>💳 Payment History</li>
-                        <li>⚙️ Profile Settings</li>
+                        <li><Link to='/tuitions'>📚 Tuition Listing</Link></li>
+                        <li><Link to='/tutors'>🧑‍🏫 Tutors</Link></li>
+                        <li><Link to='/dashboard/payment-history'>💳 Payment History</Link></li>
+                        <li><Link to='/dashboard/profile-settings'>⚙️ Profile Settings</Link></li>
                     </ul>
 
                     <div className="flex justify-center md:justify-start gap-5 mt-5 text-primary">

@@ -12,6 +12,7 @@ import Register from "../Pages/Authentication/Register";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
+import TutorRoute from "./TutorRoute";
 
 // Student Pages
 import PostNewTuition from "../Pages/Dashboard/Post New Tuition/PostNewTuition";
@@ -32,11 +33,14 @@ import ReportsAnalytics from "../Pages/Dashboard/Reports Analytics/ReportsAnalyt
 import TuitionDetails from "../Pages/Tuition Details/TuitionDetails";
 import PaymentSuccess from "../Pages/Payment/PaymentSuccess";
 import PaymentCancel from "../Pages/Payment/PaymentCancel";
+import DashboardHome from "../Pages/Dashboard/Dashboard Homes/DashboardHome";
+import Error from "../Components/Error/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -67,6 +71,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component: AuthLayout,
+    errorElement: <Error />,
     children: [
       {
         path: "login",
@@ -82,12 +87,17 @@ export const router = createBrowserRouter([
   // Dashboard Routes (Protected)
   {
     path: "dashboard",
-    element: (
+    element:
       <PrivateRoute>
         <DashboardLayout />
       </PrivateRoute>
-    ),
+    ,
+    errorElement: <Error />,
     children: [
+      {
+        index: true,
+        Component: DashboardHome
+      },
       // Student
       {
         path: "post-new-tuition",
@@ -121,15 +131,21 @@ export const router = createBrowserRouter([
       // Tutor
       {
         path: "my-applications",
-        Component: MyApplications
+        element: <TutorRoute>
+          <MyApplications />
+        </TutorRoute>
       },
       {
         path: "ongoing-tuitions",
-        Component: OngoingTuitions
+        element: <TutorRoute>
+          <OngoingTuitions />
+        </TutorRoute>
       },
       {
         path: "revenue-history",
-        Component: RevenueHistory
+        element: <TutorRoute>
+          <RevenueHistory />
+        </TutorRoute>
       },
 
       // Admin
