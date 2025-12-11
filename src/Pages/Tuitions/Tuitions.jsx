@@ -10,16 +10,20 @@ const Tuitions = () => {
     const axiosInstance = UseAxios();
     const [search, setSearch] = useState("");
     const [sort, setSort] = useState("Default");
+    const [totalTuitions, setTotalTuitions] = useState(0)
 
     let { data: tuitions = [], isLoading } = useQuery({
         queryKey: ["tuitions", search],
         queryFn: async () => {
             const res = await axiosInstance.get(`/all-tuitions?status=Approved&search=${search}`);
-            return res.data;
+            setTotalTuitions(res.data.count)
+            return res.data.result;
         },
     });
+    console.log(totalTuitions);
 
-  const sortedTuitions = (() => {
+
+    const sortedTuitions = (() => {
         if (sort == 'Higher to Lower Budget') {
             return tuitions.sort((a, b) => (b.budget) - (a.budget))
         }
@@ -31,11 +35,6 @@ const Tuitions = () => {
         }
     })()
 
-
-    if (isLoading) {
-        return <Loading />
-    }
-
     return (
         <div className='h-screen'>
             <div className="w-11/12 mx-auto my-32 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
@@ -43,18 +42,18 @@ const Tuitions = () => {
                 <h1 className="text-center text-3xl font-bold text-secondary">
                     All Tuitions <span className="text-primary ml-1"> ({tuitions.length})</span>
                 </h1>
-                
 
-               <div className='flex justify-between items-center my-12'>
-                 <div>
-                    <select className='border-2 border-black rounded-md p-1' value={sort} onChange={e => setSort(e.target.value)}>
-                        <option value="Default">Default</option>
-                        <option value="Higher to Lower Budget">Higher to Lower Budget</option>
-                        <option value="Lower to Higher Budget">Lower to Higher Budget</option>
-                    </select>
-                </div>
 
-                
+                <div className='flex justify-between items-center my-12'>
+                    <div>
+                        <select className='border-2 border-black rounded-md p-1' value={sort} onChange={e => setSort(e.target.value)}>
+                            <option value="Default">Default</option>
+                            <option value="Higher to Lower Budget">Higher to Lower Budget</option>
+                            <option value="Lower to Higher Budget">Lower to Higher Budget</option>
+                        </select>
+                    </div>
+
+
                     <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-xl shadow-md w-full md:w-1/3">
                         <svg
                             className="h-6 opacity-60"
@@ -73,7 +72,7 @@ const Tuitions = () => {
                             </g>
                         </svg>
                         <input
-                            onChange={(e) => {
+                            onKeyUp={(e) => {
                                 setSearch(e.target.value)
                             }}
                             type="search"
@@ -81,11 +80,11 @@ const Tuitions = () => {
                             className="w-full bg-transparent outline-none text-secondary placeholder-secondary"
                         />
                     </div>
-               
-               </div>
+
+                </div>
 
                 <div className="overflow-x-auto mt-6">
-                    <table className="table w-full">
+                    {isLoading ? <Loading /> : <table className="table w-full">
                         <thead className="bg-secondary/10 text-secondary uppercase text-sm font-bold">
                             <tr>
                                 <th>#</th>
@@ -111,7 +110,7 @@ const Tuitions = () => {
                                 </tr>
                             ))}
                         </tbody>
-                    </table>
+                    </table>}
                 </div>
             </div>
         </div>

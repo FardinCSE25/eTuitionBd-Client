@@ -34,18 +34,18 @@ const Footer = () => {
                 {/* Quick Links & Socials */}
                 <div className='w-[200px]'>
                     <h3 className="font-bold text-lg mb-3">Quick Links & Socials</h3>
-                    <ul className="space-y-2 text-sm opacity-90">
+                    <ul className="space-y-2 text-sm opacity-90 ">
                         <li>🏠 Home</li>
-                        <li><Link to='/tuitions'>📚 Tuition Listing</Link></li>
-                        <li><Link to='/tutors'>🧑‍🏫 Tutors</Link></li>
-                        <li><Link to='/dashboard/payment-history'>💳 Payment History</Link></li>
-                        <li><Link to='/dashboard/profile-settings'>⚙️ Profile Settings</Link></li>
+                        <li className='list-none'>📚 Tuition Listing</li>
+                        <li className='list-none'>🧑‍🏫 Tutors</li>
+                        <li className='list-none'>💳 Payment History</li>
+                        <li className='list-none'>⚙️ Profile Settings</li>
                     </ul>
 
                     <div className="flex justify-center md:justify-start gap-5 mt-5 text-primary">
-                        <FaFacebook size={26} className="cursor-pointer hover:text-white duration-200" />
-                        <FaYoutube size={26} className="cursor-pointer hover:text-white duration-200" />
-                        <SiX size={26} className="cursor-pointer hover:text-white duration-200" />
+                        <a target='blank' href="https://www.facebook.com/fardin.ahmed.493619"><FaFacebook size={26} className="cursor-pointer hover:text-accent duration-200" /></a>
+                        <a target='blank' href="https://www.youtube.com/@Nafiz0809"><FaYoutube size={26} className="cursor-pointer hover:text-red-600 duration-200" /></a>
+                        <a target='blank' href="https://x.com/FardinAhmed203"><SiX size={26} className="cursor-pointer hover:text-white duration-200" /></a>
                     </div>
                 </div>
 
