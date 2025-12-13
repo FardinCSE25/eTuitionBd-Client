@@ -51,8 +51,10 @@ const ProfileSettings = () => {
     const p = profile[0];
 
     return (
-        <motion.div
-            className="w-11/12 md:w-7/12 lg:w-5/12 mx-auto mt-32 mb-20 bg-white rounded-3xl shadow-2xl p-10 flex flex-col items-center"
+        
+       <div className="py-16 lg:py-26">
+         <motion.div
+            className="w-11/12 md:w-7/12 lg:w-5/12 mx-auto bg-white rounded-3xl shadow-2xl p-10 flex flex-col items-center"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -130,6 +132,7 @@ const ProfileSettings = () => {
                 </div>
             </dialog>
         </motion.div>
+       </div>
     );
 };
 

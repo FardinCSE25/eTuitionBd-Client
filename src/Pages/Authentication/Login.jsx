@@ -50,7 +50,7 @@ const Login = () => {
 
     return (
         <>
-            <title>eTuitionBd — Login</title>
+            <title>eTuitionBd- Login</title>
 
             <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 py-6">
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useParams } from 'react-router';
 import UseAxios from '../../Hooks/UseAxios';
 import { useQuery } from '@tanstack/react-query';
@@ -15,10 +15,7 @@ const TuitionDetails = () => {
     const modalRef = useRef(null);
     const { user } = UseAuth()
     const axiosSecure = UseAxiosSecure()
-    const [selectedTuition, setSelectedTuition] = useState(null)
-    console.log(selectedTuition);
     
-
     const { data: tuitions = [], isLoading, refetch } = useQuery({
         queryKey: ["tuitions"],
         queryFn: async () => {
@@ -26,20 +23,21 @@ const TuitionDetails = () => {
             return res.data;
         },
     });
-    const exactTuition = tuitions.find(tuition => tuition._id === id);
 
-    // const { data: appliedTuitions = [], isLoading: appliedLoading } = useQuery({
-    //     queryKey: ["tuitions", exactTuition?._id],
-    //     queryFn: async () => {
-    //         const res = await axiosSecure.get(`/tuitions/${exactTuition?._id}?email=${user.email}`);
-    //         return res.data;
-    //     },
-    // })
-    // console.log(appliedTuitions);
+    const { data: tuition = [] } = useQuery({
+        queryKey: ["tuition"],
+        queryFn: async () => {
+            const res = await axiosInstance.get(`/tuitions/${id}/tutor?email=${user?.email}`);
+            return res.data;
+        },
+    });
 
-    if (isLoading) {
+     if (isLoading) {
         return <Loading />;
     }
+console.log(tuitions);
+
+    const exactTuition = tuitions.result.find(tuition => tuition._id === id);
 
     if (!exactTuition) {
         return (
@@ -120,21 +118,21 @@ const TuitionDetails = () => {
             {
                 role.role === "Tutor" &&
                 <div className="mt-6 text-center">
-                    {
-                        selectedTuition?.length > 0 ? (
+                           {
+                        tuition?.length > 0 ? (
                             <button className="btn btn-primary" disabled>Applied</button>
                         ) : (
                             <button
                                 className="btn btn-primary"
                                 onClick={() => {
                                     modalRef.current.showModal();
-                                    setSelectedTuition(exactTuition)
                                 }}
                             >
                                 Apply
                             </button>
                         )
                     }
+                     
                 </div>
             }
 

@@ -38,8 +38,8 @@ const Tuitions = () => {
     return (
         <div className='h-screen'>
             <div className="w-11/12 mx-auto my-32 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
-
-                <h1 className="text-center text-3xl font-bold text-secondary">
+                <title>eTuitionBd- All Tuitions</title>
+                <h1 className="text-center text-3xl mt-6 font-bold text-secondary">
                     All Tuitions <span className="text-primary ml-1"> ({tuitions.length})</span>
                 </h1>
 

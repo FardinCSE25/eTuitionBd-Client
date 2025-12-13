@@ -105,17 +105,16 @@ const ManageUsers = () => {
     };
 
     return (
-        <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
+        <div className='py-12 lg:py-20'>
+            <div className="w-11/12 mx-auto bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
             <title>eTuitionBd - Manage Users</title>
-            <h2 className="text-3xl md:text-4xl font-bold text-secondary text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-secondary text-center mt-8 mb-12">
                 Manage Users <span className="text-primary ml-2">({users.length})</span>
             </h2>
-
-
-            {/* Users Table */}
+          
             <div className="overflow-x-auto mt-6">
                 <table className="table w-full">
-                    <thead className="bg-secondary/10 text-secondary uppercase text-sm font-bold">
+                    <thead className="bg-primary text-accent uppercase text-sm font-bold">
                         <tr>
                             <th>#</th>
                             <th>User</th>
@@ -131,7 +130,7 @@ const ManageUsers = () => {
                             <tr key={user._id} className="hover:bg-primary/10 transition">
                                 <th className="text-secondary">{index + 1}</th>
 
-                                {/* User details */}
+                           
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
@@ -153,7 +152,6 @@ const ManageUsers = () => {
                                 <td className="text-secondary">{user.email}</td>
                                 <td className="font-semibold text-secondary">{user.role}</td>
 
-                                {/* Admin Action Button */}
                                 <td>
                                     {user.role === "Admin" ? (
                                         <button
@@ -171,8 +169,7 @@ const ManageUsers = () => {
                                         </button>
                                     )}
                                 </td>
-
-                                {/* Other actions */}
+                                
                                 <td>
                                     {
                                         user.role !== "Admin" &&
@@ -200,6 +197,7 @@ const ManageUsers = () => {
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     );
 };

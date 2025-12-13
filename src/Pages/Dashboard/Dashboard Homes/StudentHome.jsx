@@ -6,7 +6,7 @@ const StudentHome = () => {
 
     return (
         <div className="w-11/12 mx-auto my-10">
-
+            <title>eTuitionBd - Dashboard Home</title>
             <div className="bg-white shadow-xl rounded-2xl p-8 border-l-4 border-primary">
                 <h1 className="text-3xl font-bold text-secondary">
                     Welcome to your Dashboard <span className="text-primary ml-1">{user?.displayName}</span> 👋

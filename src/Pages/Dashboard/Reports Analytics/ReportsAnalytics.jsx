@@ -27,9 +27,11 @@ const ReportsAnalytics = () => {
     if (isLoading || amountLoading) return <Loading />;
 
     return (
-        <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl p-8">
 
-            {/* Page Title */}
+        <div className="py-12 lg:py-20">
+            <div className="w-11/12 mx-auto bg-white rounded-2xl shadow-xl p-8">
+            <title>eTuitionBd- Reports & Analytics</title>
+
             <h1 className="text-center text-4xl font-extrabold text-secondary">
                 📊 Reports & Analytics
             </h1>
@@ -37,10 +39,10 @@ const ReportsAnalytics = () => {
                 Overview of all platform earnings & approved tuitions.
             </p>
 
-            {/* Analytics Cards */}
+
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
 
-                {/* Total Earnings */}
+
                 <div className="p-6 rounded-2xl shadow-md bg-secondary/10 border-l-8 border-primary">
                     <h2 className="text-xl font-semibold text-secondary">
                         Platform's Total Transactions
@@ -51,7 +53,7 @@ const ReportsAnalytics = () => {
                     <p className="text-sm text-secondary/70 mt-1">All confirmed payments</p>
                 </div>
 
-                {/* Total Approved Tuitions */}
+
                 <div className="p-6 rounded-2xl shadow-md bg-primary/20 border-l-8 border-secondary">
                     <h2 className="text-xl font-semibold text-secondary">
                         Platform's Total Approved Tuitions
@@ -63,16 +65,16 @@ const ReportsAnalytics = () => {
                 </div>
             </div>
 
-            {/* Payment History Table */}
+
             <div className="overflow-x-auto mt-14">
                 <table className="table w-full">
-                    <thead className="bg-primary text-secondary text-lg">
+                    <thead className="bg-primary text-accent uppercase">
                         <tr>
                             <th>#</th>
                             <th>Subject</th>
                             <th>Transaction ID</th>
                             <th>Status</th>
-                            <th>Paid At</th>
+                            <th>Paid at</th>
                         </tr>
                     </thead>
 
@@ -91,6 +93,8 @@ const ReportsAnalytics = () => {
             </div>
 
         </div>
+        </div>
+
     );
 };
 

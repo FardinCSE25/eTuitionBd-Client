@@ -42,8 +42,8 @@ const AdminHome = () => {
 
     return (
         <div className="p-6 md:p-10">
-
-            {/* Header */}
+             <title>eTuitionBd - Dashboard Home</title>
+            
             <h2 className="text-4xl md:text-5xl font-extrabold text-secondary tracking-tight mb-10 relative inline-block">
                 Admin Dashboard
                 <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary rounded-full opacity-60"></span>
@@ -53,7 +53,7 @@ const AdminHome = () => {
                 Tuition Approval Status Stats
             </h2>
 
-            {/* Stats Cards */}
+          
             <div className="grid md:grid-cols-3 gap-6 mb-10">
                 {approvalStats.map(stat => stat._id && (
                     <div
@@ -66,10 +66,10 @@ const AdminHome = () => {
                 ))}
             </div>
 
-            {/* Chart + Legend Section */}
+           
             <div className="bg-white/60 backdrop-blur-2xl shadow-2xl p-10 rounded-2xl border border-primary/20 flex flex-col lg:flex-row gap-10 items-center justify-center">
 
-                {/* Pie Chart */}
+             
                 <PieChart width={350} height={350}>
                     <Pie
                         dataKey="value"
@@ -89,7 +89,7 @@ const AdminHome = () => {
                     <Tooltip />
                 </PieChart>
 
-                {/* Custom Legend */}
+               
                 <div className="flex flex-col gap-4 w-full max-w-xs">
                     {chartData.map((item, index) => (
                         <div

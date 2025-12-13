@@ -15,8 +15,11 @@ const PaymentHistory = () => {
         }
     })
     if (isLoading) return <Loading />;
+
+
     return (
-        <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
+        <div className='py-12 lg:py-20'>
+            <div className="w-11/12 mx-auto bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
 
             <title>eTuitionBd - Payment History</title>
 
@@ -28,7 +31,7 @@ const PaymentHistory = () => {
             {/* Table */}
             <div className="overflow-x-auto mt-6">
                 <table className="table w-full">
-                    <thead className="bg-secondary/10 text-secondary uppercase text-sm font-bold">
+                    <thead className="bg-primary text-accent uppercase text-sm font-bold">
                         <tr>
                             <th>Sl No</th>
                             <th>Subject</th>
@@ -54,6 +57,7 @@ const PaymentHistory = () => {
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     );
 };

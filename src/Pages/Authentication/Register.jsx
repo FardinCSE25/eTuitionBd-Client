@@ -18,11 +18,10 @@ const Register = () => {
     const location = useLocation();
     const { registerUser, updateUserProfile } = UseAuth();
     const axiosSecure = UseAxiosSecure()
-    // const axiosInstance = UseAxios()
 
     const handleRegister = (data) => {
         console.log(data);
-        
+
         const photo = data.photo[0]
         const formData = new FormData();
         formData.append('image', photo);
@@ -56,10 +55,10 @@ const Register = () => {
                         }
                     });
 
-                    const userProfile = {
-                            displayName: data.name,
-                            photoURL: photoURL
-                        };
+                const userProfile = {
+                    displayName: data.name,
+                    photoURL: photoURL
+                };
 
                 updateUserProfile(userProfile)
                     .then(() => navigate(location.state || '/'))
@@ -90,7 +89,6 @@ const Register = () => {
 
             <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row rounded-3xl shadow-2xl overflow-hidden bg-white">
 
-                {/* LEFT FORM SECTION */}
                 <motion.div
                     className="w-full lg:w-1/2 p-10 md:p-16 flex flex-col justify-center"
                     variants={formVariants}
@@ -103,7 +101,7 @@ const Register = () => {
 
                     <form onSubmit={handleSubmit(handleRegister)} className="space-y-5">
 
-                        {/* NAME */}
+
                         <div>
                             <label className="text-lg font-medium text-secondary flex items-center mb-1">
                                 <User className="w-5 h-5 mr-2 text-primary" /> Name
@@ -118,7 +116,6 @@ const Register = () => {
                             {errors.name && <p className="text-red-500 text-sm">Name is required.</p>}
                         </div>
 
-                        {/* EMAIL */}
                         <div>
                             <label className="text-lg font-medium text-secondary flex items-center mb-1">
                                 <Mail className="w-5 h-5 mr-2 text-primary" /> Email
@@ -133,7 +130,7 @@ const Register = () => {
                             {errors.email && <p className="text-red-500 text-sm">Email is required.</p>}
                         </div>
 
-                        {/* PASSWORD */}
+
                         <div>
                             <label className="text-lg font-medium text-secondary flex items-center mb-1">
                                 <Lock className="w-5 h-5 mr-2 text-primary" /> Password
@@ -171,7 +168,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        {/* ROLE */}
+
                         <h2 className="text-lg font-medium text-secondary mb-3">Select Your Role</h2>
                         <div className="flex gap-6">
                             <label className="label text-secondary text-sm">
@@ -184,7 +181,7 @@ const Register = () => {
                             </label>
                         </div>
 
-                        {/* PHONE */}
+
                         <div>
                             <label className="text-lg font-medium text-secondary flex items-center mb-2">
                                 <Phone className="w-5 h-5 mr-2 text-primary" /> Phone Number

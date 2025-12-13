@@ -58,7 +58,10 @@ const AppliedTutors = () => {
     };
 
     return (
-        <div className='w-11/12 mx-auto my-12'>
+        <div className='py-12 lg:py-20'>
+            <div className='w-11/12 mx-auto'>
+                        <title>eTuitionBd- Applied Tutors</title>
+
             <h1 className='text-3xl md:text-4xl text-center font-extrabold text-secondary mb-14'>
                 Tutor Applications <span className='text-3xl md:text-4xl text-center font-extrabold text-primary'>({applications.length})</span>
             </h1>
@@ -136,6 +139,7 @@ const AppliedTutors = () => {
                     </div>
                 ))}
             </div>
+        </div>
         </div>
     );
 };

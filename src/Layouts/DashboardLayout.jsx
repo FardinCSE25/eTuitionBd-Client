@@ -62,7 +62,7 @@ const DashboardLayout = () => {
                 </nav>
 
                 {/* PAGE CONTENT */}
-                <div className="p-4">
+                <div className="bg-white">
                     <Outlet />
                 </div>
             </div>

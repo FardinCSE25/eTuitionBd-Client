@@ -47,11 +47,12 @@ const PostNewTuition = () => {
     };
 
     return (
-        <div className='w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl border border-secondary/20 p-8'>
-            <h1 className='text-secondary text-4xl md:text-5xl font-extrabold mb-8 text-center'>
+        <div className='py-20'>
+            <div className='w-11/12 mx-auto bg-white rounded-2xl shadow-xl border border-secondary/20 p-8'>
+                        <title>eTuitionBd- Post New Tuition</title>
+            <h1 className='text-secondary text-3xl md:text-4xl font-extrabold mb-12 mt-6 text-center'>
                 Post New Tuition
             </h1>
-            <hr className='border-primary mb-8' />
 
             <form onSubmit={handleSubmit(handlePostTuition)} className="flex flex-col gap-8">
 
@@ -131,6 +132,7 @@ const PostNewTuition = () => {
                     className='btn bg-primary text-accent w-44 h-12 self-center mt-6'
                 />
             </form>
+        </div>
         </div>
     );
 };

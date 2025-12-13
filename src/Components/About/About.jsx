@@ -21,7 +21,7 @@ export default function About() {
     return (
         <section className="bg-secondary rounded-xl mt-32 my-20 py-16 px-5">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
-                
+                <title>eTuitionBd - About</title>
                 {/* Image Section */}
                 <div className="lg:w-1/2">
                     <img 

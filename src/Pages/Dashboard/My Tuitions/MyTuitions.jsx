@@ -70,16 +70,17 @@ const MyTuitions = () => {
     };
 
     return (
-        <div className="w-11/12 mx-auto my-20 bg-white rounded-2xl shadow-xl p-6">
+       <div className='py-12 lg:py-20'>
+         <div className="w-11/12 mx-auto bg-white rounded-2xl shadow-xl p-6">
             <title>eTuitionBd- My Tuitions</title>
-            <h1 className="text-center text-3xl font-bold text-secondary">
+            <h1 className="text-center text-3xl mt-6 font-bold text-secondary">
                 My Tuitions <span className="text-primary ml-1"> ({tuitions.length})</span>
             </h1>
             <p className='text-center text-sm text-primary mt-2'> (Approved only) </p>
 
             <div className="overflow-x-auto mt-6">
                 <table className="table">
-                    <thead className="bg-secondary/10 text-secondary">
+                    <thead className="bg-primary text-accent">
                         <tr>
                             <th>Sl No</th>
                             <th>Student Name</th>
@@ -204,6 +205,7 @@ const MyTuitions = () => {
 
 
         </div>
+       </div>
     );
 };
 
