@@ -121,11 +121,11 @@ console.log(totalTuitions);
                 </div>
 
                 <div className='flex justify-center mt-7 items-center flex-wrap gap-2'>
-                    {
+                    {/* {
                         currentPage > 0 && (
                             <button onClick={() => setCurrentPage(currentPage - 1)} className={`btn`}>Prev</button>
                         )
-                    }
+                    } */}
 
                     {
                         [...Array(totalPages).keys().map(page => {
@@ -138,11 +138,11 @@ console.log(totalTuitions);
                         })]
                     }
 
-                    {
+                    {/* {
                         currentPage < totalPages - 1 && (
                             <button onClick={() => setCurrentPage(currentPage + 1)} className={`btn`}>Next</button>
                         )
-                    }
+                    } */}
                 </div>
             </div>
         </div>
