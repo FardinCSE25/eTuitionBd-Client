@@ -11,16 +11,20 @@ const Tuitions = () => {
     const [search, setSearch] = useState("");
     const [sort, setSort] = useState("Default");
     const [totalTuitions, setTotalTuitions] = useState(0)
+    const [totalPages, setTotalPages] = useState(0)
+    const [currentPage, setCurrentPage] = useState(0)
+    const limit = 7
 
     let { data: tuitions = [], isLoading } = useQuery({
-        queryKey: ["tuitions", search],
+        queryKey: ["tuitions", search, currentPage],
         queryFn: async () => {
-            const res = await axiosInstance.get(`/all-tuitions?status=Approved&search=${search}`);
-            setTotalTuitions(res.data.count)
+            const res = await axiosInstance.get(`/all-tuitions?status=Approved&search=${search}&limit=${limit}&skip=${currentPage * limit}`);
+            setTotalTuitions(res.data.count[0].count)
+            const pages = Math.ceil(res.data.count[0].count / limit)
+            setTotalPages(pages)
             return res.data.result;
         },
     });
-    console.log(totalTuitions);
 
 
     const sortedTuitions = (() => {
@@ -36,15 +40,15 @@ const Tuitions = () => {
     })()
 
     return (
-        <div className='h-screen'>
-            <div className="w-11/12 mx-auto my-32 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
+        <div className=''>
+            <div className="w-11/12 mx-auto mt-32 bg-white rounded-2xl shadow-xl border border-secondary/20 p-6">
                 <title>eTuitionBd- All Tuitions</title>
                 <h1 className="text-center text-3xl mt-6 font-bold text-secondary">
-                    All Tuitions <span className="text-primary ml-1"> ({tuitions.length})</span>
+                    All Tuitions <span className="text-primary ml-1"> ({totalTuitions})</span>
                 </h1>
 
 
-                <div className='flex justify-between items-center my-12'>
+                <div className='flex justify-between items-center my-7'>
                     <div>
                         <select className='border-2 border-black rounded-md p-1' value={sort} onChange={e => setSort(e.target.value)}>
                             <option value="Default">Default</option>
@@ -85,7 +89,7 @@ const Tuitions = () => {
 
                 <div className="overflow-x-auto mt-6">
                     {isLoading ? <Loading /> : <table className="table w-full">
-                        <thead className="bg-secondary/10 text-secondary uppercase text-sm font-bold">
+                        <thead className="bg-primary text-accent uppercase text-sm font-bold">
                             <tr>
                                 <th>#</th>
                                 <th>Student Name</th>
@@ -95,6 +99,7 @@ const Tuitions = () => {
                             </tr>
                         </thead>
                         <tbody>
+
                             {sortedTuitions.map((tuition, index) => (
                                 <tr key={tuition._id} className="hover:bg-primary/10 transition">
                                     <td className="text-secondary">{index + 1}</td>
@@ -109,8 +114,34 @@ const Tuitions = () => {
                                     </td>
                                 </tr>
                             ))}
+
                         </tbody>
                     </table>}
+                </div>
+
+                <div className='flex justify-center mt-7 items-center flex-wrap gap-2'>
+                    {
+                        currentPage > 0 && (
+                            <button onClick={() => setCurrentPage(currentPage - 1)} className={`btn`}>Prev</button>
+                        )
+                    }
+
+                    {
+                        [...Array(totalPages).keys().map(page => {
+                            return (
+                                <button onClick={() => setCurrentPage(page)} className={`btn ${page === currentPage
+                                    ? "btn-primary text-accent"
+                                    : "text-black"
+                                    }`}>{page + 1}</button>
+                            )
+                        })]
+                    }
+
+                    {
+                        currentPage < totalPages - 1 && (
+                            <button onClick={() => setCurrentPage(currentPage + 1)} className={`btn`}>Next</button>
+                        )
+                    }
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ const Forbidden = () => {
         <div className="flex flex-col items-center justify-center h-screen">
             <Lottie
                 options={{
-                    loop: false,
+                    loop: true,
                     autoplay: true,
                     animationData: forbiddenAnimation,
                 }}
