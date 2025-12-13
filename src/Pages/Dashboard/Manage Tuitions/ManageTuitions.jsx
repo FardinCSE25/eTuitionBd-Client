@@ -9,7 +9,7 @@ import UseAxios from '../../../Hooks/UseAxios';
 import UseAuth from '../../../Hooks/UseAuth';
 
 const ManageTuitions = () => {
-    const {user} = UseAuth()
+    const { user } = UseAuth()
     const axiosSecure = UseAxiosSecure();
     // const axiosInstance = UseAxios()
 
@@ -23,7 +23,7 @@ const ManageTuitions = () => {
 
     const updateTuitionStatus = (tuition, status) => {
         const updateInfo = { status: status }
-        axiosSecure.patch(`/tuitions/${tuition._id}`, updateInfo)
+        axiosSecure.patch(`/tuitions/${tuition._id}?email=${user?.email}`, updateInfo)
             .then(res => {
                 if (res.data.modifiedCount) {
                     refetch();
