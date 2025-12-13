@@ -4,7 +4,7 @@ import UseAuth from './UseAuth';
 import { useNavigate } from 'react-router';
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://etuitionbd-server.vercel.app'
 })
 
 const UseAxiosSecure = () => {
@@ -14,7 +14,7 @@ const UseAxiosSecure = () => {
     const navigate = useNavigate()
     useEffect(() => {
         if(!loading && user?.accessToken){
-            console.log("Hello", user?.accessToken);
+            // console.log("Hello", user?.accessToken);
             
             const reqInterceptor = axiosSecure.interceptors.request.use(config => {
             config.headers.Authorization = `Bearer ${user?.accessToken}`

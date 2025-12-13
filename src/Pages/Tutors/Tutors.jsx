@@ -34,7 +34,7 @@ const Tutors = () => {
                 {/* Responsive Table */}
                 <div className="overflow-x-auto mt-10">
                     <table className="table w-full">
-                        <thead className="bg-secondary/10 text-secondary uppercase text-xs md:text-sm font-bold">
+                        <thead className="bg-primary text-accent uppercase text-xs md:text-sm font-bold">
                             <tr>
                                 <th>#</th>
                                 <th>Tutor</th>

@@ -8,7 +8,7 @@ import banner4 from "../../assets/istockphoto-1444142886-612x612.jpg";
 
 const Hero = () => {
     return (
-        <div className='rounded-[20px] mt-32 md:rounded-[40px] lg:rounded-[80px] overflow-hidden'>
+        <div className='rounded-[20px] mt-32 lg:rounded-[40px] overflow-hidden'>
             <Carousel autoPlay infiniteLoop className="h-full">
                 {[banner1, banner2, banner3, banner4].map((banner, index) => (
                     <div key={index}>
