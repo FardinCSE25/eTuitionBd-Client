@@ -9,7 +9,7 @@ const ReportsAnalytics = () => {
     const { user } = UseAuth();
 
     const { data: payments = [], isLoading } = useQuery({
-        queryKey: ["payments"],
+        queryKey: ["payments", user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/all-payments?email=${user?.email}`);
             return res.data;

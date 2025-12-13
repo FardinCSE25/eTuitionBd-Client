@@ -26,6 +26,7 @@ const Tuitions = () => {
         },
     });
 
+console.log(totalTuitions);
 
     const sortedTuitions = (() => {
         if (sort == 'Higher to Lower Budget') {
@@ -129,7 +130,7 @@ const Tuitions = () => {
                     {
                         [...Array(totalPages).keys().map(page => {
                             return (
-                                <button onClick={() => setCurrentPage(page)} className={`btn ${page === currentPage
+                                <button key={page} onClick={() => setCurrentPage(page)} className={`btn ${page === currentPage
                                     ? "btn-primary text-accent"
                                     : "text-black"
                                     }`}>{page + 1}</button>

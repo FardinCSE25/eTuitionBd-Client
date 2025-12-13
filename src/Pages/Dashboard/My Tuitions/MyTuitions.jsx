@@ -26,7 +26,7 @@ const MyTuitions = () => {
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#d33",
-            cancelButtonColor: "#6c757d",
+            cancelButtonColor: "#1E293B",
             confirmButtonText: "Yes, Delete"
         }).then(result => {
             if (result.isConfirmed) {

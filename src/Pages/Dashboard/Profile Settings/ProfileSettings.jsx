@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from "../../../Components/Loading/Loading";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
+import UseAxios from "../../../Hooks/UseAxios";
 
 const ProfileSettings = () => {
     const { user } = UseAuth();
@@ -19,6 +20,9 @@ const ProfileSettings = () => {
             return res.data;
         },
     });
+
+    console.log(profile);
+    
 
     if (isLoading) return <Loading />;
 

@@ -30,7 +30,7 @@ const MyApplications = () => {
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#d33",
-            cancelButtonColor: "#6c757d",
+            cancelButtonColor: "#1E293B",
             confirmButtonText: "Yes, Delete"
         }).then(result => {
             if (result.isConfirmed) {
@@ -85,7 +85,7 @@ const MyApplications = () => {
                             <th>Class</th>
                             <th>Location</th>
                             <th>Status</th>
-                            <th>Applied At</th>
+                            <th>Applied at</th>
                             <th>Actions</th>
                         </tr>
                     </thead>

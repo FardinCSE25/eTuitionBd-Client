@@ -16,7 +16,6 @@ const ManageUsers = () => {
         },
     });
 
-    // --- admin functions ---
     const handleMakeAdmin = (user) => {
         axiosSecure.patch(`/users/${user._id}/role`, { role: "Admin" })
             .then((res) => {
@@ -46,6 +45,7 @@ const ManageUsers = () => {
                 }
             });
     };
+
     const handleMakeStudent = (user) => {
         axiosSecure.patch(`/users/${user._id}/role`, { role: "Student" })
             .then((res) => {
@@ -83,7 +83,7 @@ const ManageUsers = () => {
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#e3342f",
-            cancelButtonColor: "#6c757d",
+            cancelButtonColor: "#1E293B",
             confirmButtonText: "Yes, delete!"
         }).then((result) => {
             if (result.isConfirmed) {

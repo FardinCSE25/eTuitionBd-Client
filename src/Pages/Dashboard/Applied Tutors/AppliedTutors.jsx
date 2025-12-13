@@ -42,7 +42,7 @@ const AppliedTutors = () => {
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#d33",
-            cancelButtonColor: "#6c757d",
+            cancelButtonColor: "#1E293B",
             confirmButtonText: "Yes, Delete"
         }).then(result => {
             if (result.isConfirmed) {
@@ -122,14 +122,14 @@ const AppliedTutors = () => {
                             </button> :  <>
                             <button
                                 onClick={() => handleAccept(app)}
-                                className='px-5 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold shadow'
+                                className='px-5 py-2 cursor-pointer bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold shadow'
                             >
                                 Accept
                             </button>
 
                             <button
                                 onClick={() => handleReject(app)}
-                                className='px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold shadow'
+                                className='px-5 py-2 cursor-pointer bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold shadow'
                             >
                                 Reject
                             </button></>

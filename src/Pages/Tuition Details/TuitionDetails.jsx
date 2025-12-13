@@ -25,12 +25,15 @@ const TuitionDetails = () => {
     });
 
     const { data: tuition = [] } = useQuery({
-        queryKey: ["tuition"],
+        queryKey: ["tuition", id, user?.email],
         queryFn: async () => {
             const res = await axiosInstance.get(`/tuitions/${id}/tutor?email=${user?.email}`);
             return res.data;
         },
     });
+
+    // console.log(tuition);
+    
 
      if (isLoading) {
         return <Loading />;
@@ -119,7 +122,7 @@ console.log(tuitions);
                 role.role === "Tutor" &&
                 <div className="mt-6 text-center">
                            {
-                        tuition?.length > 0 ? (
+                        tuition?.length === 1 ? (
                             <button className="btn btn-primary" disabled>Applied</button>
                         ) : (
                             <button

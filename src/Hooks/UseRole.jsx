@@ -14,6 +14,7 @@ const UseRole = () => {
             return res.data
         }
     })
+    
     return { role, isLoading };
 };
 

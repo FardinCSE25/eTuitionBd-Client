@@ -3,6 +3,7 @@ import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Components/Loading/Loading';
 import { PieChart, Pie, Tooltip, Cell } from 'recharts';
+import UseAuth from '../../../Hooks/UseAuth';
 
 
 const pieColors = [
@@ -11,20 +12,18 @@ const pieColors = [
     "#5CA0F7", // Light Blue (Primary variation)
     "#03373D", // Deep Teal (Secondary variation)
     "#66C9AC", // Soft Teal accent
-    "#A3D39C", // Light Green accent
-    "#CAEB66", // Lime Green accent
-    "#E1F7C1", // Soft Green accent
     "#89CFF0", // Sky Blue
     "#0F4C75", // Dark Blue/Teal
 ];
 
 const AdminHome = () => {
+    const { user } = UseAuth()
     const axiosSecure = UseAxiosSecure()
     const { data: approvalStats = [], isLoading } = useQuery({
-        queryKey: ["tuitions-approval-status-stats"],
+        queryKey: ["tuitions-approval-status-stats", user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(
-                `/tuitions/approval-status/stats`
+                `/tuitions/approval-status/stats?email=${user?.email}`
             );
             return res.data;
         },
@@ -42,8 +41,8 @@ const AdminHome = () => {
 
     return (
         <div className="p-6 md:p-10">
-             <title>eTuitionBd - Dashboard Home</title>
-            
+            <title>eTuitionBd - Dashboard Home</title>
+
             <h2 className="text-4xl md:text-5xl font-extrabold text-secondary tracking-tight mb-10 relative inline-block">
                 Admin Dashboard
                 <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary rounded-full opacity-60"></span>
@@ -53,7 +52,7 @@ const AdminHome = () => {
                 Tuition Approval Status Stats
             </h2>
 
-          
+
             <div className="grid md:grid-cols-3 gap-6 mb-10">
                 {approvalStats.map(stat => stat._id && (
                     <div
@@ -66,10 +65,10 @@ const AdminHome = () => {
                 ))}
             </div>
 
-           
+
             <div className="bg-white/60 backdrop-blur-2xl shadow-2xl p-10 rounded-2xl border border-primary/20 flex flex-col lg:flex-row gap-10 items-center justify-center">
 
-             
+
                 <PieChart width={350} height={350}>
                     <Pie
                         dataKey="value"
@@ -89,7 +88,7 @@ const AdminHome = () => {
                     <Tooltip />
                 </PieChart>
 
-               
+
                 <div className="flex flex-col gap-4 w-full max-w-xs">
                     {chartData.map((item, index) => (
                         <div

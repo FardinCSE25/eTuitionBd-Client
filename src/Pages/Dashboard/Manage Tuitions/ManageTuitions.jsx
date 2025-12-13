@@ -5,14 +5,18 @@ import { FaUserCheck } from 'react-icons/fa';
 import { IoPersonRemoveSharp } from 'react-icons/io5';
 import { FaTrashCan } from 'react-icons/fa6';
 import UseAxiosSecure from '../../../Hooks/UseAxiosSecure';
+import UseAxios from '../../../Hooks/UseAxios';
+import UseAuth from '../../../Hooks/UseAuth';
 
 const ManageTuitions = () => {
+    const {user} = UseAuth()
     const axiosSecure = UseAxiosSecure();
+    // const axiosInstance = UseAxios()
 
     const { refetch, data: tuitions = [] } = useQuery({
-        queryKey: ['tuitions', 'Pending'],
+        queryKey: ['tuitions', 'Pending', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get('/tuitions');
+            const res = await axiosSecure.get(`/tuitions/Pending?email=${user?.email}`);
             return res.data;
         }
     })
