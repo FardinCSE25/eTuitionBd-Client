@@ -6,8 +6,10 @@ import Footer from '../Pages/Footer/Footer';
 const MainLayout = () => {
     return (
         <div className='bg-gray-100'>
-            <div className='max-w-[1600px] mx-auto'>
+            <div className='w-screen relative'>
                 <Navbar />
+            </div>
+            <div className='max-w-[1600px] mx-auto'>
                 <Outlet />
             </div>
             <div className='w-screen'>
