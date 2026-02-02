@@ -295,7 +295,7 @@ const AppliedTutors = () => {
                                     </div>
                                 </div>
 
-                                {/* Decorative Bottom Gradient */}
+                                {/* Decorative Bottom linear */}
                                 <div className="h-2 bg-linear-to-r from-transparent via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                             </div>
                         ))}
