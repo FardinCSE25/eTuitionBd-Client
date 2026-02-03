@@ -377,24 +377,12 @@ const PostNewTuition = () => {
                                 )}
                             </button>
                             <p className="text-slate-500 text-sm mt-4 text-center">
-                                Your tuition request will be reviewed and visible to tutors shortly.
+                                Your tuition request will be reviewed and visible to tutors shortly after getting verified from admin.
                             </p>
                         </motion.div>
                     </form>
                 </motion.div>
 
-                {/* Footer Info */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="mt-8 text-center text-slate-600"
-                >
-                    <p className="text-sm">
-                        💡 Tip: Be specific about your requirements to attract the right tutors.
-                        Typically, tutors respond within 24 hours.
-                    </p>
-                </motion.div>
             </div>
         </div>
     );

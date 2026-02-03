@@ -268,7 +268,7 @@ const PaymentHistory = () => {
                     <p className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-slate-200">
                         <span className="text-primary">💡</span>
                         Need help with a payment? Contact our support team at
-                        <span className="font-semibold text-primary ml-1">support@etuitionbd.com</span>
+                        <span className="font-semibold text-primary -ml-1">support@etuitionbd.com</span>
                     </p>
                 </motion.div>
             </div>
