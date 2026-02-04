@@ -8,7 +8,7 @@ import TutorHome from './TutorHome';
 const DashboardHome = () => {
     const { role, roleLoading } = useRole()
     
-    if (roleLoading) {
+    if (roleLoading || !role || !role.role) {
         return <Loading />
     }
 

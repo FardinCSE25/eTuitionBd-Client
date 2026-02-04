@@ -12,7 +12,7 @@ import {
   FaArrowRight,
   FaGraduationCap
 } from "react-icons/fa";
-import { FiTrendingUp, FiUsers } from "react-icons/fi";
+import { FiTrendingUp } from "react-icons/fi";
 
 const StudentHome = () => {
     const { user } = UseAuth();
