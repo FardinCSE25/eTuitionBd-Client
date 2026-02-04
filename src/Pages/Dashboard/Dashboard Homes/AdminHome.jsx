@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Components/Loading/Loading';
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 import UseAuth from '../../../Hooks/UseAuth';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { 
   FaChartPie, 
@@ -99,6 +100,7 @@ const AdminHome = () => {
   // Find specific statuses for summary section
   const unapprovedCount = consolidatedStats.find(stat => stat._id === 'Unapproved')?.count || 0;
   const approvedCount = consolidatedStats.find(stat => stat._id === 'Approved')?.count || 0;
+  // eslint-disable-next-line no-unused-vars
   const pendingCount = consolidatedStats.find(stat => stat._id === 'Pending')?.count || 0;
 
   const containerVariants = {
@@ -163,7 +165,7 @@ const AdminHome = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 p-4 md:p-8">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 via-blue-50 to-indigo-50 p-4 md:p-8">
       <title>eTuitionBd - Admin Dashboard</title>
 
       {/* Animated Background Elements */}
@@ -202,7 +204,7 @@ const AdminHome = () => {
           className="relative overflow-hidden rounded-3xl shadow-2xl mb-10"
           style={{ background: `linear-gradient(to right, ${pieColors[0]}, ${pieColors[3]})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-black/5 to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-black/5 to-transparent"></div>
           <div className="relative p-8 md:p-10">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div className="flex-1">
@@ -219,7 +221,7 @@ const AdminHome = () => {
                   </span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
-                  Welcome Back, <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                  Welcome Back, <span className="bg-linear-to-r from-white to-blue-100 bg-clip-text text-transparent">
                     {user?.displayName?.split(' ')[0]}
                   </span> 👋
                 </h1>
@@ -524,7 +526,7 @@ const AdminHome = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="bg-gradient-to-r from-blue-50/80 via-teal-50/80 to-blue-50/80 backdrop-blur-sm rounded-3xl p-8 border"
+          className="bg-linear-to-r from-blue-50/80 via-teal-50/80 to-blue-50/80 backdrop-blur-sm rounded-3xl p-8 border"
           style={{ borderColor: `${pieColors[3]}20` }}
         >
           <div className="flex items-center gap-4 mb-6">
